@@ -1,0 +1,46 @@
+@model List<ProductViewModel>
+@await Html.PartialAsync("_ContentHeaderPartial", new ContentHeaderModel {PageTitle="Ürün Listesi",ControllerName="product", ButtonText="Ürün Ekle"})
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="mytable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Ürün</th>
+                                    <th>Kategori</th>
+                                    <th>Fiyat</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach(var product in Model)
+                                {
+                                    <tr>
+                                        <td>@product.Id</td>
+                                        <td>@product.Name</td>
+                                        <td>@product.Category.Name</td>
+                                        <td>@product.Price</td>
+                                        <td>
+                                            <a href="" class="btn btn-warning">Düzelt</a>
+                                            <a href="" class="btn btn-danger">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+                                
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

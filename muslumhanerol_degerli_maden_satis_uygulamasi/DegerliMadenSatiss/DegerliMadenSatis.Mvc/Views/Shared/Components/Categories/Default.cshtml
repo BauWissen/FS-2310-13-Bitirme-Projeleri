@@ -1,0 +1,71 @@
+﻿@*@model List<DegerliMadenSatis.Shared.ViewModels.CategoryViewModel> = aşağıdakinin ikinci yazım tekniği*@
+@model List<CategoryViewModel>
+<!-- Categories Section Begin -->
+<section class="categories">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 p-0">
+                <div class="categories__item categories__large__item set-bg"
+                     data-setbg="/ui/img/categories/category-6.jpg">
+                    <div class="categories__text">
+                        <h1>@Model[2].Name</h1>
+                        <p>
+                            @Model[2].Description
+                        </p>
+                        <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model[2].Id">Şimdi Sipariş Ver</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="/ui/img/categories/category-7.jpg">
+                            <div class="categories__text">
+                               <h4>@Model[0].Name</h4>
+                                <p>
+                                    @Model[0].Description
+                                </p>
+                                <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model[0].Id">Şimdi Sipariş Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="/ui/img/categories/category-7.jpg">
+                            <div class="categories__text">
+                                <h4>@Model[1].Name</h4>
+                                <p>
+                                    @Model[1].Description
+                                </p>
+                                <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model[1].Id">Şimdi Sipariş Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="/ui/img/categories/category-9.jpg">
+                            <div class="categories__text">
+                                <h4>@Model[3].Name</h4>
+                                 <p>
+                                    @Model[3].Description
+                                </p>
+                                <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model[3].Id">Şimdi Sipariş Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 p-0">
+                        <div class="categories__item set-bg" data-setbg="/ui/img/categories/category-9.jpg">
+                            <div class="categories__text">
+                                 <h4>@Model[4].Name</h4>
+                                <p>
+                                    @Model[4].Description
+                                </p>
+                                <a asp-area="" asp-controller="Product" asp-action="Index" asp-route-id="@Model[4].Id">Şimdi Sipariş Ver</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Categories Section End -->
+

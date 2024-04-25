@@ -1,0 +1,58 @@
+﻿@model ContactUsViewModel
+
+<!-- Quote Start -->
+<div class="container-fluid bg-secondary px-0">
+    <div class="row g-0">
+        <div class="col-lg-6 py-6 px-5">
+            <h1 class="display-5 mb-4">Biz Sizi Arayalım. </h1>
+            <p class="mb-4">Kasd vero erat ea amet justo no stet, et elitr no dolore no elitr sea kasd et dolor diam tempor. Nonumy sed dolore no eirmod sit nonumy vero lorem amet stet diam at. Ea at lorem sed et, lorem et rebum ut eirmod gubergren, dolor ea duo diam justo dolor diam ipsum dolore stet stet elitr ut. Ipsum amet labore lorem lorem diam magna sea, eos sed dolore elitr. Kasd vero erat ea amet justo no stet, et elitr no dolore no elitr sea kasd et dolor diam tempor. Nonumy sed dolore no eirmod sit nonumy vero lorem amet stet diam at. Ea at lorem sed et, lorem et rebum ut eirmod gubergren, dolor 
+            </p>
+
+
+            <form asp-area=""
+                  asp-controller="ContactUs"
+                  asp-action="Create"
+                  method="post">
+                <div class="row gx-3">
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="FirstName" placeholder="Adınızı Giriniz...">
+                            <label class="form-control-label" asp-for="FirstName">İsim: </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="LastName" placeholder="Soyadınızı Giriniz...">
+                            <label class="form-control-label" asp-for="LastName">Soyisim: </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating">
+                            <input type="text" class="form-control" asp-for="PhoneNumber" placeholder="Telefon Numaranızı Giriniz...">
+                            <label class="form-control-label" asp-for="PhoneNumber">Telefon: </label>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" asp-for="Email" placeholder="name@example.com">
+                            <label class="form-control-label" asp-for="Email">Email: </label>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12">
+                        <button class="btn btn-primary w-100 h-100 mt-4" type="submit">Gönder</button>
+                    </div>
+                </div>
+            </form>
+
+
+        </div>
+        <div class="col-lg-6" style="min-height: 400px;">
+            <div class="position-relative h-100">
+                <img class="position-absolute w-100 h-100" src="~/img/quote.jpg" style="object-fit: cover;">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Quote End -->

@@ -1,0 +1,79 @@
+﻿<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-7">
+                    <!--Doldurulabilir bir bölüm-->
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        <div class="header__top__links">
+                            @if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-area="" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                                <a asp-area="" asp-controller="Account" asp-action="Register">Kayıt Ol</a>
+                            }else{
+                                if(User.IsInRole("SuperAdmin")|| User.IsInRole("Admin"))
+                                {
+                                    <a asp-area="Admin"
+                                       asp-controller="Home"
+                                       asp-action="Index">Admin Panel</a>
+                                }
+                                <a asp-area=""
+                                   asp-controller="Account"
+                                   asp-action="Profile">@User.Identity.Name</a>
+                                <a asp-area=""
+                                   asp-controller="Account"
+                                   asp-action="Logout">Çıkış</a>
+                            }
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="display-4 text-danger btn-link">CosmeticShop</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active">
+                            <a  asp-area=""
+                                asp-controller="Home"
+                                asp-action="Index"
+                        >Ana Sayfa</a></li>
+                        <li><a asp-area=""
+                            asp-controller="Products"
+                            asp-action="Index"
+                        >Alışveriş</a></li>
+                        <li><a asp-area="" asp-controller="Iletisim" asp-action="Index">İletişim</a></li>
+                        <li><a asp-area="" asp-controller="Hakkimizda" asp-action="Index">Hakkımızda</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option">
+                    <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @await Component.InvokeAsync("MessageNotification")
+
+                        @await Component.InvokeAsync("ShoppingCartNotification", User.Identity.Name ?? null);
+                    }
+
+                    <div class="price"></div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
+</header>
+<!-- Header Section End -->

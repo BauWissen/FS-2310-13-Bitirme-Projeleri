@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rhythmic Realm | Admin Paneli</title>
+
+    @await Html.PartialAsync("_StylesPartial")
+    @await RenderSectionAsync("Styles", false)
+    @await RenderSectionAsync("TopScripts", false)
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+        <div class="wrapper">
+           
+             @await Component.InvokeAsync("Preloader")
+             @await Component.InvokeAsync("MainSideBar")
+             @await Component.InvokeAsync("Navbar")
+   
+             @RenderBody()
+             @await Html.PartialAsync("_FooterPartial")
+        </div>
+    </div>
+    @await Html.PartialAsync("_ScriptsPartial")
+    @await Component.InvokeAsync("Notyf"); 
+    @await RenderSectionAsync("BottomScripts", false)
+</body>
+</html>

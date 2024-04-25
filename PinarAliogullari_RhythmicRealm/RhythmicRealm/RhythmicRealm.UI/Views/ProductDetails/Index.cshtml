@@ -1,0 +1,272 @@
+﻿@model ProductViewModel
+
+@await Component.InvokeAsync("NavbarOfMainCat")
+
+
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row ">
+			<!-- Product main img -->
+			<div class="col-md-5 col-md-push-0">
+				<div id="product-main-img">
+					<div class="product-preview">
+						<img src="~/images/products/@Model.ImageUrl" alt="">
+					</div>
+
+				</div>
+			</div>
+			<!-- /Product main img -->
+			<!-- Product thumb imgs -->
+			<div class="col-md-2  col-md-pull-5">
+				
+			</div>
+		
+			<!-- Product details -->
+			<div class="col-md-4">
+				<div class="product-details">
+					<h2 class="product-name">@Model.Name</h2>
+					<div>
+						<div class="product-rating">
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star"></i>
+							<i class="fa fa-star-o"></i>
+						</div>
+						
+					</div>
+					<div>
+						<h3 class="product-price">@($"{Model.Price:C2}") <del class="product-old-price">@($"{Model.Price+2500:C2}")</del></h3>
+						<span class="product-available">Stokta</span>
+					</div>
+					<p>@Model.Description</p>
+
+					<div class="add-to-cart">
+						
+						@if (User.Identity.IsAuthenticated)
+						{
+							<form asp-area="" asp-controller="Basket" asp-action="AddToBasket" method="post">
+								<input type="hidden" value="@Model.Id" name="productId" />
+								<input type="hidden" value="1" name="quantity" />
+								<div class="add-to-cart">
+									<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Sepete Ekle</button>
+								</div>
+							</form>
+						}
+						else
+						{
+							<div class="add-to-cart">
+								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a asp-area="" asp-controller="Account" asp-action="Login">Sepete Ekle</a></button>
+							</div>
+						}
+					</div>
+
+					<ul class="product-btns">
+						@if (User.Identity.IsAuthenticated)
+						{
+							<a asp-area="" asp-controller="FavProducts" asp-action="ToggleFavorite" asp-route-productId="@Model.Id" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-heart-o"></i><span class="tooltipp"></span></a>
+						}
+						else
+						{
+							<a asp-area="" asp-controller="Account" asp-action="Login" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-heart-o"></i><span class="tooltipp"></span></a>
+						}
+					</ul>
+
+					<ul class="product-links">
+						<li>Kategoriler:</li>
+						<li><a href="#">@Model.MainCategory.Name</a></li>
+						<li><a href="#">@Model.SubCategory.Name</a></li>
+					</ul>
+
+					
+
+				</div>
+			</div>
+			<!-- /Product details -->
+			<!-- Product tab -->
+			<div class="col-md-12">
+				<div id="product-tab">
+					<!-- product tab nav -->
+					<ul class="tab-nav">
+						<li class="active"><a data-toggle="tab" href="#tab1">Teknik Özellikler</a></li>
+						<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+					</ul>
+					<!-- /product tab nav -->
+					<!-- product tab content -->
+					<div class="tab-content">
+						<!-- tab1  -->
+						<div id="tab1" class="tab-pane fade in active">
+							<div class="row">
+								<div class="col-md-12">
+									<p>@Model.Properties</p>
+								</div>
+							</div>
+						</div>
+						<!-- /tab1  -->
+						
+						<!-- tab3  -->
+						<div id="tab3" class="tab-pane fade in">
+							<div class="row">
+								<!-- Rating -->
+								<div class="col-md-6">
+									<div id="rating">
+										<div class="rating-avg">
+											<span>4.5</span>
+											<div class="rating-stars">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star-o"></i>
+											</div>
+										</div>
+										<ul class="rating">
+											<li>
+												<div class="rating-stars">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+												<div class="rating-progress">
+													<div style="width: 80%;"></div>
+												</div>
+												<span class="sum">3</span>
+											</li>
+											<li>
+												<div class="rating-stars">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+												<div class="rating-progress">
+													<div style="width: 60%;"></div>
+												</div>
+												<span class="sum">2</span>
+											</li>
+											<li>
+												<div class="rating-stars">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+												<div class="rating-progress">
+													<div></div>
+												</div>
+												<span class="sum">0</span>
+											</li>
+											<li>
+												<div class="rating-stars">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+													<i class="fa fa-star-o"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+												<div class="rating-progress">
+													<div></div>
+												</div>
+												<span class="sum">0</span>
+											</li>
+											<li>
+												<div class="rating-stars">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star-o"></i>
+													<i class="fa fa-star-o"></i>
+													<i class="fa fa-star-o"></i>
+													<i class="fa fa-star-o"></i>
+												</div>
+												<div class="rating-progress">
+													<div></div>
+												</div>
+												<span class="sum">0</span>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!-- /Rating -->
+								<!-- Reviews -->
+								<div class="col-md-6">
+									<div id="reviews">
+										<ul class="Değerlendirmeler">
+											<li>
+												<div class="review-heading">
+													<h5 class="name">John</h5>
+													<p class="date">27 DEC 2018, 8:0 PM</p>
+													<div class="review-rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o empty"></i>
+													</div>
+												</div>
+												<div class="review-body">
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+												</div>
+											</li>
+											<li>
+												<div class="review-heading">
+													<h5 class="name">John</h5>
+													<p class="date">27 DEC 2018, 8:0 PM</p>
+													<div class="review-rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o empty"></i>
+													</div>
+												</div>
+												<div class="review-body">
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+												</div>
+											</li>
+											<li>
+												<div class="review-heading">
+													<h5 class="name">John</h5>
+													<p class="date">27 DEC 2018, 8:0 PM</p>
+													<div class="review-rating">
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star"></i>
+														<i class="fa fa-star-o empty"></i>
+													</div>
+												</div>
+												<div class="review-body">
+													<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+												</div>
+											</li>
+										</ul>
+										
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<!-- /tab3  -->
+					</div>
+					<!-- /product tab content  -->
+				</div>
+			</div>
+			<!-- /product tab -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+	@await Component.InvokeAsync("RelatedProducts", new { subCategoryId = @Model.SubCategory.Id })
+</div>
+<!-- /SECTION -->
+
+
+
+
+

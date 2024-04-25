@@ -1,0 +1,196 @@
+﻿    <!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-primary">
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class=" mt-3 pb-3 mb-3 d-flex">
+            <div class="info">
+                <h3 class="d-block">Yönetici Paneli</h3>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="true">
+                <!--Movie Menüsü-->
+                <li class="nav-item menu-open">
+                    <a class="nav-link active">
+                        <i class="fas fa-user-cog"></i>
+                        <p>
+                            Film Ayarları
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="Movie"
+                               asp-action="Index"
+                               asp-route-id="false"
+                                class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Filmler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="Movie"
+                               asp-action="Create"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Film Ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="Movie"
+                               asp-action="Index"
+                               asp-route-id="true"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cöp Kutusu</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--SerialTv Menüsü-->
+                <li class="nav-item menu-open">
+                    <a class="nav-link active">
+                        <i class="fas fa-user-cog"></i>
+                        <p>
+                            Dizi Ayarları
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="SerialTv"
+                               asp-action="Index"
+                               asp-route-id="false"
+                                class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Diziler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="SerialTv"
+                               asp-action="Create"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dizi Ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="SerialTv"
+                               asp-action="Index"
+                               asp-route-id="true"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cöp Kutusu</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Genre Menüsü-->
+                <li class="nav-item menu-open">
+                    <a class="nav-link active">
+                        <i class="fas fa-user-cog"></i>
+                        <p>
+                            Tür Ayarları
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                               asp-controller="Genre"
+                               asp-action="Index"
+                               asp-route-id="false"
+                                class="nav-link ">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Türler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a 
+                                asp-area="Admin"
+                                asp-controller="Genre"
+                               asp-action="Create"
+                                class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tür ekle</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin"
+                               asp-controller="Genre"
+                               asp-action="Index"
+                               asp-route-id="true"
+                               class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Cöp Kutusu</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                @if (User.IsInRole("SuperAdmin"))
+                {
+                    <!--UserRoles Menüsü-->
+                    <li class="nav-item menu-open">
+                        <a class="nav-link active">
+                            <i class="fas fa-user-cog"></i>
+                            <p>
+                                Kullanıcı Ayarları
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-area="Admin"
+                                   asp-controller="UserRoles"
+                                   asp-action="Index"
+                                   class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Kullanıcılar/Rol Atama</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-area="Admin"
+                                   asp-controller="UserRoles"
+                                   asp-action="Roles"
+                                   class="nav-link ">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Roller</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+               
+                <!--exit Barı-->
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-door-open"></i>
+                        <p>
+                            Cıkış
+                            <span class="right badge badge-danger">Web Sayfaya Dön</span>
+                        </p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

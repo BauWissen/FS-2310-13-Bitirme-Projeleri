@@ -1,0 +1,29 @@
+@model int
+
+@{
+    bool isShowCount = Model == 0 ? false : true;
+}
+@if (isShowCount)
+{
+   
+    <div class="dropdown for-message">
+        <a
+           asp-area="Admin"
+       asp-controller="Message"
+       asp-action="Index"
+           class="btn btn-secondary dropdown-toggle">
+            <i style="font-size: 35px;" class="fa fa-envelope-open mt-3 text-danger"></i>
+            <span class="count bg-primary text-white bg-danger" style="font-size: 13px;">@Model</span>
+
+
+        </a>
+    </div>
+}
+else
+{
+    <a asp-area="Admin"
+       asp-controller="Message"
+       asp-action="Index"
+       class="fa fa-envelope text-primary me-4 position-relative mt-2" style="font-size: 35px">
+    </a>
+}

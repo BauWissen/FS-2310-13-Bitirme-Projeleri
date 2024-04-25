@@ -1,0 +1,46 @@
+﻿<!-- Sidebar Start -->
+<div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-light navbar-light">
+        <a href="index.html" class="navbar-brand mx-4 mb-3">
+            <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Yonetimsell</h3>
+        </a>
+        @await Component.InvokeAsync("CustomerSidebarUserInfo")
+        <div class="navbar-nav w-100">
+            <a asp-area="Customer" asp-controller="Home" asp-action="Index" class="nav-item nav-link"><i class="fas fa-home me-2"></i>Ana Sayfa</a>
+            @if (User.Identity.IsAuthenticated && ( User.IsInRole("SuperAdmin") || User.IsInRole("Admin")))
+            {
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-item nav-link"><i class="fas fa-home me-2"></i>Admin Panel </a>
+            }
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-user-friends"></i>Arkadaşlar</a>
+                <div class="dropdown-menu bg-transparent border-0 ms-3">
+                    <a asp-area="Customer" asp-controller="Friendship" asp-action="Index" class="dropdown-item">Arkadaş ekle</a>
+                    <a asp-area="Customer" asp-controller="Friendship" asp-action="PendingList" class="dropdown-item">Arkadaşlık istekleri</a>
+                    <a asp-area="Customer" asp-controller="Friendship" asp-action="FriendList" class="dropdown-item">Arkadaş Listesi</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-envelope"></i>Mesajlarım</a>
+                <div class="dropdown-menu bg-transparent border-0 ms-3">
+                    <a asp-area="Customer" asp-controller="Message" asp-action="Index" class="dropdown-item">Gelenler</a>
+                    <a asp-area="Customer" asp-controller="Message" asp-action="SentList" class="dropdown-item">Gönderilenler</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-folder-open"></i>Projelerim</a>
+                <div class="dropdown-menu bg-transparent border-0 ms-3">
+                    <a asp-area="Customer" asp-controller="Project" asp-action="Index" class="dropdown-item">Proje Listesi</a>
+                    <a asp-area="Customer" asp-controller="Project" asp-action="RemovedList" class="dropdown-item">Silinmiş Projeler</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-tasks"></i>Görevlerim</a>
+                <div class="dropdown-menu bg-transparent border-0 ms-3">
+                    <a asp-area="Customer" asp-controller="PTask" asp-action="Index" class="dropdown-item">Aktif Görevlerim</a>
+                    <a asp-area="Customer" asp-controller="PTask" asp-action="CompletedTasks" class="dropdown-item">Tamamlanan Görevlerim</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- Sidebar End -->

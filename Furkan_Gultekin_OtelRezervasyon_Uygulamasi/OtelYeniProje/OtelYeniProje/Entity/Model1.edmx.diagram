@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b64ede0213e14de9a258ab235ff6566e" Name="Diagram1" ZoomLevel="85">
+        <EntityTypeShape EntityType="DbOtelYeniModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblBirim" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblDepartman" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblDurum" Width="1.5" PointX="0.75" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblGorev" Width="1.5" PointX="5.25" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblKasa" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblKur" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblMisafir" Width="1.5" PointX="3" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblOda" Width="1.5" PointX="3.125" PointY="20.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblPersonel" Width="1.5" PointX="7.5" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblTelefon" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblUlke" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblUrun" Width="1.5" PointX="5.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblUrunGrup" Width="1.5" PointX="3" PointY="25.75" IsExpanded="true" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblBirim_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblUrun_TblBirim" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblDepartman_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblGorev_TblDepartman" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblPersonel_TblDepartman" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblGorev_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblKasa_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblKur_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblMisafir_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblOda_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblPersonel_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblTelefon_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblUrun_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblUrunGrup_TblDurum" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblPersonel_TblGorev" ManuallyRouted="false" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblUrun_TblUrunGrup" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.ilceler" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.iller" Width="1.5" PointX="5.375" PointY="3.75" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_ilceler_iller" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblMisafir_ilceler" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblMisafir_iller" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblUrunHareket" Width="1.5" PointX="7.5" PointY="15.5" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblUrunHareket_TblUrun" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblRezervasyon" Width="1.5" PointX="5.375" PointY="18.625" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblRezervasyon_TblDurum" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblRezervasyon_TblMisafir" />
+        <AssociationConnector Association="DbOtelYeniModel.FK_TblRezervasyon_TblOda" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblYeniKayit" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblOnRezervasyon" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblEkibimiz" Width="1.5" PointX="7.375" PointY="4.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.Tbliletisim" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblMesaj" Width="1.5" PointX="9.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblMesaj2" Width="1.5" PointX="9.375" PointY="6.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblHakkimda" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblAdmin" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblKasaHareketi" Width="1.5" PointX="11.375" PointY="3.75" />
+        <EntityTypeShape EntityType="DbOtelYeniModel.TblKasaCikisHareketi" Width="1.5" PointX="11.375" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

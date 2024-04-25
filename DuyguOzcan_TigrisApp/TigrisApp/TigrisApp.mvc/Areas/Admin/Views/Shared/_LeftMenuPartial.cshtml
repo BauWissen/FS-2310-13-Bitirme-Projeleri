@@ -1,0 +1,197 @@
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        <img src="~/img/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+            style="opacity: .8">
+        <span class="brand-text font-weight-light"> TigrisApp</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/img/tugce.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Tuğçe Karaer</a>
+            </div>
+        </div>
+
+        <!-- SidebarSearch Form -->
+        <div class="form-inline">
+            <div class="input-group" data-widget="sidebar-search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Ara" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-sidebar">
+                        <i class="fas fa-search fa-fw"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item">
+                    <a href="pages/widgets.html" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Ayarlar
+                            
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                           Ürünler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="product" asp-action="index" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ürün Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="product" asp-action="create" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Ürün Ekleme</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Kategoriler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="category" asp-action="index" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kategori Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="category" asp-action="create" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Kategori Ekleme</p>
+                            </a>
+                        </li>
+                        
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Tedarikçiler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="supplier" asp-action="index" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Tedarikçi Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="supplier" asp-action="create" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Tedatikçi Ekleme</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Renkler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="colour" asp-action="index" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Renk Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="colour" asp-action="create" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Renk Ekleme</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Bölgeler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="region" asp-action="index" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Bölge Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="region" asp-action="create" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Bölge Ekleme</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Malzemeler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="material" asp-action="index" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Malzeme Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="material" asp-action="create" asp-area="admin" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Malzeme Ekleme</p>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

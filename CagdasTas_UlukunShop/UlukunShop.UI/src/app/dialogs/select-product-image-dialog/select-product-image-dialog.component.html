@@ -1,0 +1,26 @@
+<h2 mat-dialog-title>Ürün Fotografı ekle</h2>
+<mat-dialog-content class="mat-typography">
+
+  <app-file-upload [options]="options"></app-file-upload>
+
+
+  <mat-card  *ngFor="let image of images" class="product-image-card">
+    <mat-card-header>
+    </mat-card-header>
+    <img mat-card-image [src]="image.path" >
+    <mat-card-content>
+      <input type="radio" name="img" (click)="makeThumbnail(image.id)" >
+<span class="ms-1">Thumbnail olarak sec</span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="text-bg-primary" mat-button>İndir</button>
+      <button class="text-bg-danger" mat-button (click)="deleteImage(image.id, $event)">Sil</button>
+    </mat-card-actions>
+  </mat-card>
+
+
+
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Kapat</button>
+</mat-dialog-actions>

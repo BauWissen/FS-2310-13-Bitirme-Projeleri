@@ -1,0 +1,85 @@
+﻿   <!-- Banner Section Begin -->
+<section class="banner set-bg" data-setbg="/ui/img/brand.png">
+</section>
+<!-- Banner Section End -->
+ <!-- Header Section Begin -->
+<header class="header">
+    <div class="container-fluid ">
+        <div class="row  ">
+            <div class=" col-lg-5 ">
+                <nav class="header__menu m-5">
+                    <ul>
+                        <li class="active">
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                        </li>
+                        <li>
+                            <a  asp-area="" asp-controller="Home" asp-action="Hakkimizda">Hakkımızda</a>
+                        </li>
+                        <li>
+                            <a asp-area="" asp-controller="Home" asp-action="Contact">İletişim</a>
+                        </li>
+                        <li>
+                            <a href="#">Kategoriler</a>
+                            <ul class="dropdown">
+                                <li><a href="/Product/Index/1">Tüm Ürünlerimiz</a></li>
+                                <li><a href="/Product/Index/2">Kolyelerimiz</a></li>
+                                <li><a href="/Product/Index/3">Bileklik-Charmlarımız</a></li>
+                                <li><a href="/Product/Index/4">Küpelerimiz</a></li>
+                                <li><a href="/Product/Index/5">İndirimli Ürünler</a></li>
+                                </ul>
+                        </li>
+                
+                    </ul>
+                </nav>
+            </div>
+            <div class=" col-lg-3 ">
+                <div class="header__logo">
+                    <a asp-area="" asp-controller="Home" asp-action="Index"><img src="/ui/img/logos.png" alt=""></a>
+                </div>
+            </div>
+        
+            <div class="col-lg-4 mt-3">
+                <div class="header__right">
+                    <div class="header__right__auth">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a asp-area=""
+                               asp-controller="Account"
+                               asp-action="Login">Login</a>
+                            <a asp-area=""
+                               asp-controller="Account"
+                            asp-action="Register">Register</a>
+                        }else{
+                            if(User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                            {
+                                <a asp-area="Admin"
+                                   asp-controller="Home"
+                                   asp-action="Index">Admin</a>
+                            }
+                            <a asp-area=""
+                               asp-controller="Account"
+                               asp-action="Profile">@User.Identity.Name</a>
+                            <a asp-area=""
+                               asp-controller="Account"
+                               asp-action="Logout">Exit</a>
+                        }
+
+                    </div>
+                    <ul class="header__right__widget">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            @await Component.InvokeAsync("MessageNotification")
+                            @await Component.InvokeAsync("ShoppingCartNotification", User.Identity.Name ?? null)
+                            ;
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open">
+            <i class="fa fa-bars text-white"></i>
+        </div>
+    </div>
+</header>
+<!-- Header Section End -->

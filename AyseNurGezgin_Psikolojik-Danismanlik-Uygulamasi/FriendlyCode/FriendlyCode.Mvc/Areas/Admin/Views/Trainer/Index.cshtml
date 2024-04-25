@@ -1,0 +1,108 @@
+﻿@model List<TrainerViewModel>
+
+@section Styles{
+  @await Html.PartialAsync("_DataTablesCssPartial")
+}
+
+@section Scripts{
+ @await Html.PartialAsync("_DataTablesJsPartial")
+}
+
+<div class="container">
+   <div class="row">
+       <div class="col-md-6">
+           <h1 class="display-6 text-primary">Psikologlar</h1>
+       </div>
+       <div class="col-md-6">
+           <a
+               asp-area="Admin"
+               asp-controller="Trainer"
+               asp-action="Create"
+               class="btn btn-primary float-end">Psikolog Ekle</a>
+       </div>
+   </div>
+
+   <table id="entityTable" class="table">
+       <thead>
+            <tr>
+                <th>Resim</th>
+                <th>Id</th>
+                <th>Psikolog</th>
+                <th>Fiyat</th>
+                <th>#</th>
+            </tr>
+       </thead>
+
+       <tbody>
+
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/@t.ImageUrl" width="35" height="70" />
+                </td>
+                <td>@t.Id</td>
+                <td>@t.Name</td>
+                <td>@t.Price</td>
+                <td width="180">
+                    <a 
+                        asp-area="Admin"
+                        asp-controller="Trainer"
+                        asp-action="Edit"
+                        asp-route-id="@t.Id"
+                       class="btn btn-success">Düzenle</a>
+
+                    <a asp-area="Admin"
+                       asp-controller="Trainer"
+                       asp-action="Delete"
+                       asp-route-id="@t.Id"
+                       class="btn btn-danger">Sil</a>
+                </td>
+
+            </tr>
+        }
+        </tbody>
+
+   </table>
+
+</div>
+
+<!--row neden kullandık?
+    *sol ve sağa düzdün yerleştirabilmek için
+    Başlığı th yapma nedenim?
+   * başlığı kolu kalın göstrmesi için
+   Tr den sonra da bir döngüye iht var;gelen trainerlar için de dolaşarak tr
+   ler oluşturucam.Model'ın içinde dolaşacaksın;Model için de benim trainerlar
+   ım
+
+   Datatablles js projeye eklemek için kendi sitesinin dökümantasyonun dan yararlanarak ilerliyor-
+   um;ilk olarak table etiketime id veriryorum verdiğim ismin daha sonra da kullanabilmem için ge-
+   nel isim veriyorum ve sadece gerekli olan yerlerde kullanılmak üzere old.için partial olarak ay-
+   arlıyorum. ve projeme cdn linklerini alıyorum.Bunları da Head kısmına yani Layout kısmına gidip
+et await RenderSectionAsync(içine de ilgili sectionun ismini verip);ilgili sayfaya stil eklemek ama-
+cıyla(css leri eklemek için)2.olarak mecbur değiliz ama yazmazsak default değerinin bizi zor durumda
+bıraktığı parametre var;required false demezsem true der.True olunca da her sayfalarda bu section'ı
+yazmak zorundasın yoksa hata veririm demiş olur.Dirakt parametreyi de söyleyebilirisn;false.(ikiside
+olur.)Ne sağladı?=Hangi view de istersem Styles diye section açıp içine istediğim css kodlarını yaza-
+blirim(Sadece o sayfa da geçerli olacak) Burda nerde yazd önemi yok ama kolaylık olsun diye üste yaz-
+ıyorum.Burada artık css etiketlerin kullanarak stil yazabilirim ya da link elementini kullanarak bir
+css e bağlantı verebiirim ki bunu istiyoruz zaten.link için de jquery de var;bir js kütüphanesi o da.
+Jquery tek varlık sebebi var=Daha az kod,daha çok iş :)
+
+ikinci linki eklerken;zaten bizim şablonumuz da var olan sectionumuz var adı=Scripts
+
+Styles içine yazd.Head kısmına yerleşecek(Layout da oraya tanımladık)
+Scripts en alta eklenecek body nin üstüne eklendiği için.Orjinal olması gereken yere kendi ekliyor.
+Section un varlık sebeblerinden başında o geliyor; zaten body görmüyorum body layout dan gelicek.
+
+Son olrakta;Bir js kodu verip ve orada bu html dosyası içinde ki hangi id'li tablonun datatable olrak
+kullanılması gerktiğini söylemeliyim.ve dökümantasyondan alıp zaten olan Scripts kısmının içine script
+etiketi için de ekliyorum.Ve benim table id kısmımı değiştiriyorum.
+Başlık  bölümleri vs onları eklemezsen sorun verir.
+
+
+Partial mantığı; Biryerlerden arayıp bulmaktansa kısa kod yzamak ve ordan çağırmak.
+Başka bir index sayfam da bir listeleme yapacaksam ve ora da DAtatable kullnaıyorsam tek yapmam gereken
+sectionlarımı bunları çağırmak olucak.
+
+-->

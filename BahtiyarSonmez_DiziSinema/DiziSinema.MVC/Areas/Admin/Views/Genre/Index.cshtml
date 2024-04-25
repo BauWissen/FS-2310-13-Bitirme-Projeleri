@@ -1,0 +1,114 @@
+﻿@model List<GenreViewModel>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between mb-2">
+                <div>
+                    <h1>Tür Listesi @(ViewBag.GenreShowDeleted ? "Cöp Kutusu" : "") </h1>
+                </div>
+                <div>
+                    <a asp-area="Admin"
+                       asp-controller="Genre"
+                       asp-action="Create"
+                       class="btn btn-success btn-sm">Tür Ekle</a>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="myDataTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="55">Id</th>
+                                        <th>Ürün</th>
+                                        <th>Aktif</th>
+                                        <th width="55">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var g in Model)
+                                    {
+                                        <tr>
+                                            <td>@g.Id</td>
+                                            <td>@g.GenreName</td>
+                                            <td>
+                                                <form id="isActiveForm_@g.Id"
+                                                      asp-area="Admin"
+                                                      asp-controller="Genre"
+                                                      asp-action="UpdateIsActive"
+                                                      asp-route-id="@g.Id"
+                                                      method="post">
+                                                    <div class="custom-control custom-switch">
+                                                        <input onchange="document.getElementById('isActiveForm_@g.Id').submit();"
+                                                               type="checkbox" class="custom-control-input" id="isActive_@g.Id"
+                                                        @(g.IsActive ? "checked" : "") />
+                                                        <label class="custom-control-label" for="isActive_@g.Id"></label>
+                                                    </div>
+                                                </form>
+
+                                            </td>
+                                            <td class="text-center">
+                                                @if (!ViewBag.GenreShowDeleted)
+                                                {
+                                                    <a asp-area="Admin"
+                                                       asp-controller="Genre"
+                                                       asp-action="Deleted"
+                                                       asp-route-id="@g.Id"
+                                                       class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-area="Admin"
+                                                       asp-controller="Genre"
+                                                       asp-action="SoftDeleted"
+                                                       asp-route-id="@g.Id"
+                                                       class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-undo-alt"></i>
+                                                    </a>
+                                                    <a asp-area="Admin"
+                                                       asp-controller="Genre"
+                                                       asp-action="HardDeleted"
+                                                       asp-route-id="@g.Id"
+                                                       class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-trash"></i>
+                                                    </a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Styles {
+    @await Html.PartialAsync("_DataTablesCssPartial")
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_DataTablesJsPartial")
+}
+2

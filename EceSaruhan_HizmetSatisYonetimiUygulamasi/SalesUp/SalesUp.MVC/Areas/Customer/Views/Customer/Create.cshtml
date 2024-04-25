@@ -1,0 +1,64 @@
+﻿@model AddCustomerViewModel
+
+
+<div class="row w-75 float-right container float-end pe-5 me-5 my-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-success pt-2">Yeni Müşteri Ekle</h3>
+            </div>
+            <div class="card-body card-block">
+                <form asp-area="Customer"
+                      asp-controller="Customer"
+                      asp-action="Create"
+                      method="post" class="form-horizontal">
+
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="FirstName" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="FirstName" type="text" placeholder="İsim Bilgisini Giriniz..." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="LastName" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="LastName" type="text" placeholder="Soyisim Bilgisini Giriniz..." class="form-control"></div>
+                    </div>
+
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="CompanyName" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="CompanyName" type="text" placeholder="Şirket Adını Giriniz..." class="form-control"></div>
+                    </div>
+
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="Title" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="Title" type="text" placeholder="Unvan Bilgisi Giriniz..." class="form-control"></div>
+                    </div>
+
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="PhoneNumber" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="PhoneNumber" type="text" placeholder="İrtibat Numarası Giriniz..." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="Email" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="Email" type="text" placeholder="Mail Adresi Giriniz..." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="Address" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><textarea asp-for="Address" rows="9" placeholder="Adres Bilgilerini Giriniz..." class="form-control"></textarea></div>
+                    </div>
+
+                    <a asp-area="Customer"
+                       asp-controller="Customer"
+                       asp-action="Index"
+                       class="btn btn-warning text-white">Geri Dön</a>
+                    <button class="btn btn-success float-end" type="submit">Satışlara Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,146 @@
+﻿@model OrderViewModel
+
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<h3 class="breadcrumb-header">ÖDEME SAYFASI</h3>
+				<ul class="breadcrumb-tree">
+					<li><a asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a></li>
+					<li class="active">Ödeme Sayfası</li>
+				</ul>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<div class="text-danger" asp-validation-summary="All"></div>
+		<!-- row -->
+		<form asp-area="" asp-controller="CheckOut" asp-action="Checkout" method="post">
+		<div class="row">
+		
+			<div class="col-md-7">
+				<!-- Billing Details -->
+				<div class="billing-details">
+					<div class="section-title">
+						<h3 class="title">Fatura Adresi</h3>
+					</div>
+					<div class="form-group col-md-6">
+						<label asp-for="@Model.FirstName"></label>
+						<input asp-for=@Model.FirstName class="input"  >
+							
+					</div>
+					<div class="form-group col-md-6">
+						<label asp-for="@Model.LastName"></label>
+						<input asp-for=@Model.LastName class="input"  >
+					</div>
+					<div class="form-group col-md-6">
+						<label asp-for="@Model.Email"></label>
+						<input asp-for=@Model.Email class="input"  >
+					</div>
+					<div class="form-group col-md-6">
+						<label asp-for="@Model.PhoneNumber"></label>
+						<input asp-for="@Model.PhoneNumber" class="input" >
+					</div>
+					<div class="form-group col-md-6">
+						<label asp-for="@Model.City"></label>
+						<input asp-for="@Model.City" class="input"  >
+					</div>
+					<div class="form-group col-md-6">
+						<label >Ülke</label>
+						<input value="Türkiye" class="input"  >
+					</div>
+					<div class="form-group col-md-12">
+						<label asp-for="@Model.Address"></label>
+						<textarea asp-for="@Model.Address" class="input"></textarea>
+					</div>
+				</div>
+				<!-- /Billing Details -->
+				<div class="billing-details">
+					<div class="section-title">
+						<h3 class="title">Kart Bilgileri</h3>
+					</div>
+					<div class="form-group col-md-12">
+						<label asp-for="@Model.CardName"></label>
+						<input asp-for="@Model.CardName" class="input" >
+						<span class="text-danger" asp-validation-for="@Model.FirstName"></span>
+					</div>
+					<div class="form-group col-md-12">
+					    <label asp-for="@Model.CardNumber"></label>
+						<input asp-for="@Model.CardNumber" class="input"  >
+						<span class="text-danger" asp-validation-for="@Model.CardNumber"></span>
+					</div>
+					<div class="form-group col-md-4">
+						<label asp-for="@Model.ExpirationMonth"></label>
+						<input asp-for="@Model.ExpirationMonth" class="input">
+					</div>
+					<div class="form-group col-md-4">
+						<label asp-for="@Model.ExpirationYear"></label>
+						<input asp-for="@Model.ExpirationYear" class="input" >
+					</div>
+					<div class="form-group col-md-4">
+						<label asp-for="@Model.Cvc"></label>
+						<input asp-for="@Model.Cvc" class="input" >
+					</div>
+				</div>
+			</div>
+
+			<!-- Order Details -->
+			<div class="col-md-5 order-details">
+				<div class="section-title text-center">
+					<h3 class="title">Siparişiniz</h3>
+				</div>
+				<div class="order-summary">
+					<div class="order-col">
+						<div><strong>Ürünler</strong></div>
+						<div><strong>Toplam</strong></div>
+					</div>
+					<div class="order-products">
+						@foreach (var item in Model.ShoppingBasket.BasketItems)
+						{
+							<div class="order-col">
+								<div>@item.Quantity x @item.Name</div>
+								<div>
+									@($"{item.Price*item.Quantity:C2}")</div>
+							</div>
+						}
+					</div>
+					@{
+						var total = Model.ShoppingBasket.TotalPrice();
+						var discount = (double)total * 0.1;
+						var newTotal = (double)total - discount;
+					}
+					
+				
+						<div class="order-col">
+							<div>İndirim</div>
+							<div><strong>@($"{discount:C2}")</strong></div>
+						</div>
+						<div class="order-col">
+							<div>Kargo</div>
+							<div><strong>Ücretsiz</strong></div>
+						</div>
+					<div class="order-col">
+						<div><strong>Toplam</strong></div>
+						<div><strong class="order-total">@($"{newTotal:C2}")</strong></div>
+					</div>
+				</div>
+				<button type="submit" class="primary-btn order-submit">Ödemeyi Tamamla</button>
+			</div>
+			<!-- /Order Details -->
+		</div>
+		</form>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->

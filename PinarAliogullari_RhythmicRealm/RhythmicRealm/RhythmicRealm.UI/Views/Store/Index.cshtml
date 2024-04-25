@@ -1,0 +1,166 @@
+﻿@model StoreViewModel
+@await Component.InvokeAsync("NavbarOfMainCat")
+
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<!-- ASIDE -->
+			<div id="aside" class="col-md-3">
+				<form id="filterForm" method="GET" asp-area="" asp-controller="Store" asp-action="FilterProducts">
+					<input type="hidden" name="id" value="@Model.Products.FirstOrDefault()?.MainCategory.Id" />
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Ilgili Kategoriler</h3>
+						<div class="checkbox-filter">
+							@foreach (var subCategory in Model.SubCategories)
+							{
+							
+								<div class="input-checkbox">
+									<input type="checkbox" id="subcategory-@subCategory.Id" name="subCategoryId" value="@subCategory.Id">
+									<label for="subcategory-@subCategory.Id">
+										<span></span>
+										@subCategory.Name
+									</label>
+								</div>
+
+							}
+
+						</div>
+					</div>
+					<!-- /aside Widget -->
+				
+					<!-- aside Widget -->
+					<div class="aside">
+						<h3 class="aside-title">Markalar</h3>
+						<div class="checkbox-filter">
+
+							@foreach (var brand in Model.Brands)
+							{
+								<div class="input-checkbox">
+									<input type="checkbox" id="brand-@brand.Id" name="brandId" value="@brand.Id">
+									<label for="brand-@brand.Id">
+										<span></span>
+										@brand.Name
+									</label>
+								</div>
+							}
+
+
+
+						</div>
+					</div>
+					<!-- /aside Widget -->
+					<button style="margin-top:50px;background-color:darkred; " class="btn btn-danger btn-block" type="submit" value="@Model.Products.FirstOrDefault()?.MainCategory.Id">Filtrele</button>
+			    </form>
+			</div>
+			<!-- /ASIDE -->
+			<!-- STORE -->
+			<div id="store" class="col-md-9">
+				<!-- store top filter -->
+				
+				<!-- /store top filter -->
+				<!-- store products -->
+					<div class="row">
+					@{
+
+                   int counter = 0; 
+
+                   foreach (var product in Model.Products)
+                    {
+									<div class="col-md-4 col-xs-6">
+										<div class="product">
+											<div class="product-img">
+												<img src="~/images/products/@product.ImageUrl" alt="">
+												<div class="product-label">
+													<span class="sale">-30%</span>
+													<span class="new">NEW</span>
+												</div>
+											</div>
+											<div class="product-body">
+												<p class="product-category">@product.SubCategory.Name-@product.Brand.Name</p>
+												<h3 class="product-name"><a href="#">@product.Name</a></h3>
+												<h4 class="product-price">@($"{product.Price:C2}") <del class="product-old-price">@($"{product.Price + 2500:C2}")</del></h4>
+												<div class="product-rating">
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+													<i class="fa fa-star"></i>
+												</div>
+										<div class="product-btns">
+											@if (User.Identity.IsAuthenticated)
+											{
+												<a asp-area="" asp-controller="FavProducts" asp-action="ToggleFavorite" asp-route-productId="@product.Id" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-heart-o"></i><span class="tooltipp"></span></a>
+											}
+											else
+											{
+												<a asp-area="" asp-controller="Account" asp-action="Login" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-heart-o"></i><span class="tooltipp"></span></a>
+											}
+											<a asp-area="" asp-controller="ProductDetails" asp-action="Index" asp-route-id="@product.Id" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-eye"></i><span class="tooltipp"></span></a>
+										</div>
+									</div>
+									@if (User.Identity.IsAuthenticated)
+									{
+										<form asp-area="" asp-controller="Basket" asp-action="AddToBasket" method="post">
+											<input type="hidden" value="@product.Id" name="productId" />
+											<input type="hidden" value="1" name="quantity" />
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Sepete Ekle</button>
+											</div>
+										</form>
+									}
+									else
+									{
+										<div class="add-to-cart">
+											<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a asp-area="" asp-controller="Account" asp-action="Login">Sepete Ekle</a></button>
+										</div>
+									}
+										</div>
+									</div>
+               
+            <!-- /product -->
+
+								counter++; 
+            
+								@if (counter % 3 == 0) 
+								{
+									<div class="clearfix visible-md visible-lg"></div>
+								}
+								@if (counter % 2 == 0) 
+								{
+									<div class="clearfix visible-sm visible-xs"></div>
+							}
+						}
+					}
+				</div>
+				@if (Model.Products.Count == 0)
+				{
+					<div class="alert alert-danger" role="alert">
+						@ViewBag.ErrorMessage
+					</div>
+				}
+				<!-- /store products -->
+				<!-- store bottom filter -->
+				
+				<!-- /store bottom filter -->
+			</div>
+			<!-- /STORE -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->
+
+@section TopScripts{
+	<script>
+		document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
+			checkbox.addEventListener('change', function () {
+				document.getElementById('filterForm').submit();
+			});
+		});
+	</script>
+}

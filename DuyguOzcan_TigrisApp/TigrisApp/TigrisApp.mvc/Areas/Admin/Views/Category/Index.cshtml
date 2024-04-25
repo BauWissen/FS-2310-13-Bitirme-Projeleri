@@ -1,0 +1,45 @@
+@model List<CategoryViewModel>
+@await Html.PartialAsync("_ContentHeaderPartial", new ContentHeaderModel {PageTitle="Kategori Listesi", ControllerName="category", ButtonText="Kategori Ekle"})
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="mytable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Kategori</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var category in Model)
+                                {
+                                    <tr>
+                                        <td>@category.Id</td>
+                                        <td>@category.Name</td>
+                                        <td>
+                                            <a asp-area="admin" asp-controller="category" asp-action="edit" asp-route-id="@category.Id" class="btn btn-warning">Düzelt</a>
+                                            <a asp-area="admin" asp-controller="category" asp-action="delete"
+                                                asp-route-id="@category.Id" class="btn btn-danger">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

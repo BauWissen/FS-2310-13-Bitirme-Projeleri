@@ -1,0 +1,16 @@
+<nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+     
+               <a class="navbar-brand ms-4" href="./"><img style="width: 120px; height: 70px" src="~/CustomerArea/img/customersalesuplogo.png" alt="Logo"></a>
+        
+       <div class="navbar-nav align-items-center ms-auto">
+        
+              @await Component.InvokeAsync("CustomerMessageNotification")
+
+                    <div class="me-5 ms-3">
+                        <a asp-area="Customer"
+                           asp-controller="Account"
+                           asp-action="Profile" class="btn btn-primary fa fa-user text-white nav-item nav-link" style="font-size: 20px;"></a>                                  
+                    </div>
+                </div>
+
+   </nav>

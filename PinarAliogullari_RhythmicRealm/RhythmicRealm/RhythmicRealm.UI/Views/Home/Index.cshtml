@@ -1,0 +1,216 @@
+﻿@model List<ProductViewModel>
+@await Component.InvokeAsync("NavbarOfMainCat")
+
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-4 col-xs-6">
+				<div class="shop">
+					<div class="shop-img">
+						<img style="height:250px" src="~/ui/img/new.png" alt="">
+					</div>
+					<div class="shop-body">
+						<h3>Koleksiyondaki Yeni Ürünler</h3>
+						<a asp-area="" asp-controller="Store" asp-action="ShowProductsOnCards" asp-route-id="1" class="cta-btn">Ürünlere Göz At<i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 col-xs-6">
+				<div class="shop">
+					<div class="shop-img">
+						<img style="height:250px" src="~/ui/img/top-selling.png" alt="">
+					</div>
+					<div class="shop-body">
+						<h3>Avantajlı Ürünler</h3>
+						<a asp-area="" asp-controller="Store" asp-action="ShowProductsOnCards" asp-route-id="2" class="cta-btn">Ürünlere Göz At<i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4 col-xs-6">
+				<div class="shop">
+					<div class="shop-img">
+						<img style="height:250px" src="~/ui/img/pick.png" alt="">
+					</div>
+					<div class="shop-body">
+						<h3>Sizin İçin Seçtiklerimiz</h3>
+						<a asp-area="" asp-controller="Store" asp-action="ShowProductsOnCards" asp-route-id="3" class="cta-btn">Ürünlere Göz At<i class="fa fa-arrow-circle-right"></i></a>
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+
+			<!-- section title -->
+			<div class="col-md-12">
+				<div class="section-title">
+					<h3 class="title">Koleksiyon</h3>
+					
+				</div>
+			</div>
+			<!-- /section title -->
+			<!-- Products tab & slick -->
+			<div class="col-md-12">
+				<div class="row">
+					<div class="products-tabs">
+						<!-- tab -->
+						<div id="tab1" class="tab-pane active">
+							<div class="products-slick" data-nav="#slick-nav-1">
+							@foreach (var product in Model)
+								{
+									<div class="product">
+										<div class="product-img">
+											<img  src="~/images/products/@product.ImageUrl" alt="">
+											<div class="product-label">
+												<span class="sale">-30%</span>
+												<span class="new">NEW</span>
+											</div>
+										</div>
+										<div class="product-body">
+											<p class="product-category">@product.SubCategory.Name</p>
+											<h3 class="product-name"><a href="#">@product.Name</a></h3>
+											<h3 class="product-category"><a href="#">@product.Description</a></h3>
+											<h4 class="product-price">@($"{product.Price:C2}") <del class="product-old-price">@($"{product.Price+2500:C2}")</del></h4>
+											<div class="product-rating">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</div>
+											<div class="product-btns">
+												@if (User.Identity.IsAuthenticated)
+												{
+													<a asp-area="" asp-controller="FavProducts" asp-action="ToggleFavorite" asp-route-productId="@product.Id" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-heart-o"></i><span class="tooltipp"></span></a>
+												}
+												else
+												{
+													<a asp-area="" asp-controller="Account" asp-action="Login"  style="cursor:pointer"><i style="font-size:20px;" class="fa fa-heart-o"></i><span class="tooltipp"></span></a>
+												}
+
+												<a asp-area="" asp-controller="ProductDetails" asp-action="Index" asp-route-id="@product.Id" style="cursor:pointer"><i style="font-size:20px;" class="fa fa-eye"></i><span class="tooltipp"></span></a>
+											</div>
+										</div>
+										@if (User.Identity.IsAuthenticated)
+										{
+											<form asp-area="" asp-controller="Basket" asp-action="AddToBasket" method="post">
+												<input type="hidden" value="@product.Id" name="productId" />
+												<input type="hidden" value="1" name="quantity" />
+												<div class="add-to-cart">
+													<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Sepete Ekle</button>
+												</div>
+											</form>
+										}
+										else
+										{
+											<div class="add-to-cart">
+												<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i><a asp-area="" asp-controller="Account" asp-action="Login">Sepete Ekle</a></button>
+											</div>
+										}
+
+										
+									</div>
+
+								}
+						
+							
+							</div>
+							<div id="slick-nav-1" class="products-slick-nav"></div>
+						</div>
+						<!-- /tab -->
+					</div>
+				</div>
+			</div>
+			<!-- Products tab & slick -->
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- HOT DEAL SECTION -->
+<div id="hot-deal" class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="hot-deal">
+					<ul class="hot-deal-countdown">
+						<li>
+							<div>
+								<h3 id="days">02</h3>
+								<span>Gün</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h3 id="hours">10</h3>
+								<span>Saat</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h3 id="minutes">34</h3>
+								<span>Dakika</span>
+							</div>
+						</li>
+						<li>
+							<div>
+								<h3 id="seconds">60</h3>
+								<span>Saniye</span>
+							</div>
+						</li>
+					</ul>
+					<h2 class="text-uppercase">Yeni Ürünler </h2>
+					<p>Avantajlı Fiyatlar İle</p>
+					<a asp-area="" asp-controller="Store" asp-action="StoreWithAllProducts" class="primary-btn2 cta-btn" >Alışverişe Başla</a>
+				</div>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /HOT DEAL SECTION -->
+@await Component.InvokeAsync("Brand")
+
+@section BottomScripts{
+
+	<script>
+		var targetDate = new Date("2024-04-31T00:00:00");
+		function updateCountdown() {
+			var currentDate = new Date();
+			var difference = targetDate - currentDate;
+
+			var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+			document.getElementById("days").innerText = days;
+			document.getElementById("hours").innerText = hours;
+			document.getElementById("minutes").innerText = minutes;
+			document.getElementById("seconds").innerText = seconds;
+			setTimeout(updateCountdown, 1000);
+		}
+		updateCountdown();
+	</script>
+
+}
+						

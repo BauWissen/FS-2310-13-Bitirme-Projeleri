@@ -1,0 +1,108 @@
+@model AddProductViewModel
+<section class="content">
+    <form asp-controller="product" asp-action="create" asp-area="admin" method="post">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Ürün Ekle</h3>
+
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label asp-for="Name"></label>
+                                    <input asp-for="Name" class="form-control">
+                                    <span class="text-danger" asp-validation-for="Name"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label asp-for="Price"></label>
+                                    <input asp-for="Price" class="form-control">
+                                    <span class="text-danger" asp-validation-for="Price"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="form-group">
+                                    <label asp-for="Amount"></label>
+                                    <input asp-for="Amount" class="form-control">
+                                    <span class="text-danger" asp-validation-for="Amount"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <label asp-for="IsActive"></label>
+                                <div class="form-check">
+                                    <input asp-for="IsActive" class="form-check-input" checked>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    <label asp-for="Description"></label>
+                                    <textarea asp-for="Description" id="summernote">
+              </textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <label asp-for="GenderIds"></label>
+                                @foreach(var gender in Model.GenderList)
+                                {
+                                    <div class="form-check">
+                                        <input name="GenderIds" value="@gender.Value" id="gender_@gender.Value" class="form-check-input" type="checkbox">
+                                        <label for="">@gender.Text</label>
+                                    </div>
+                                }
+
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="ColourId"></label>
+                                    <select asp-items="@Model.ColourList" asp-for="ColourId" class="form-control">
+                                    </select>
+                                </div>
+                                
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="MaterialId"></label>
+                                    <select asp-items="@Model.MaterialList" asp-for="MaterialId" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="SupplierId"></label>
+                                    <select asp-items="@Model.SupplierList" asp-for="SupplierId" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="CategoryId"></label>
+                                    <select asp-items="@Model.CategoryList" asp-for="CategoryId" class="form-control">
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <a href="#" class="btn btn-secondary">Vazgeç</a>
+                <input type="submit" value="Kaydet" class="btn btn-success float-right">
+            </div>
+        </div>
+    </form>
+    
+</section>

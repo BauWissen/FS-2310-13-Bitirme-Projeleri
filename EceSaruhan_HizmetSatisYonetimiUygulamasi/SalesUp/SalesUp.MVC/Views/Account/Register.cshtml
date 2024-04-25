@@ -1,0 +1,79 @@
+@model RegisterViewModel
+
+<div class="container w-50 mt-5">
+    <h1 class="text-primary">Kayıt Ol</h1>
+    <hr class="text-primary"/>
+    <form 
+        asp-area=""
+        asp-controller="Account"
+        asp-action="Register"
+        method="post"
+    >
+        <div class="row">
+            <div asp-validation-summary="All" class="col-md-12 text-danger"></div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="FirstName"></label>
+                    <input class="form-control mt-3" asp-for="FirstName" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="LastName"></label>
+                    <input class="form-control mt-3" asp-for="LastName" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="UserName"></label>
+                    <input class="form-control mt-3" asp-for="UserName" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="Email"></label>
+                    <input class="form-control mt-3" asp-for="Email" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="Address"></label>
+                    <input class="form-control mt-3" asp-for="Address" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="Gender"></label>
+                    <input class="form-control mt-3" asp-for="Gender" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="City"></label>
+                    <input class="form-control mt-3" asp-for="City" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="DateofBirth"></label>
+                    <input class="form-control mt-3" asp-for="DateofBirth" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="Password"></label>
+                    <input class="form-control mt-3" asp-for="Password" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group mb-2">
+                    <label asp-for="RePassword"></label>
+                    <input class="form-control mt-3" asp-for="RePassword" />
+                </div>
+            </div>
+            <div class="col-md-12 mt-4">
+                <button type="submit" class="btn btn-primary btn-lg w-100 mb-5">Kaydol</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,31 @@
+﻿        <!-- Sidebar Start -->
+<div class="sidebar pe-4 pb-3">
+    <nav class="navbar bg-secondary navbar-dark">
+        <a href="/Admin" class="navbar-brand ms-2 mb-3">
+            <h3 class="text-primary">Admin Panel</h3>
+        </a>
+        @await Component.InvokeAsync("AdminSidebarUserInfo")
+        <div class="navbar-nav w-100">
+            <a asp-area="" asp-controller="Home" asp-action="Index" target="_blank" class="nav-item nav-link"><i class="fas fa-home me-2"></i>Site Ana Sayfa</a>
+            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="nav-item nav-link"><i class="fas fa-home me-2"></i>Admin Ana Sayfa</a>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-users me-2"></i>Kullanıcılar</a>
+                <div class="dropdown-menu bg-transparent border-0 ms-3">
+                    <a asp-area="Admin" asp-controller="User" asp-action="Index" class="dropdown-item"><i class="fas fa-list me-2"></i> Kullanıcı Listesi</a>
+                    <a asp-area="Admin" asp-controller="User" asp-action="AddUser" class="dropdown-item"><i class="fas fa-plus me-2"></i> Kullanıcı Ekle</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fas fa-users-cog me-2"></i>Roller</a>
+                <div class="dropdown-menu bg-transparent border-0 ms-3">
+                    <a asp-area="Admin" asp-controller="Role" asp-action="Index" class="dropdown-item"><i class="fas fa-list me-2"></i> Rol Listesi</a>
+                    <a asp-area="Admin" asp-controller="Role" asp-action="AddRole" class="dropdown-item"><i class="fas fa-plus me-2"></i> Rol Ekle</a>
+                </div>
+            </div>
+            <a asp-area="Admin" asp-controller="Project" asp-action="Index" class="nav-item nav-link"><i class="fas fa-folder-open me-2"></i>Proje Listesi</a>
+            <a asp-area="Admin" asp-controller="PTask" asp-action="Index" class="nav-item nav-link"><i class="fas fa-tasks me-2"></i>Görev Listesi</a>
+            <a asp-area="Admin" asp-controller="Subscription" asp-action="Index" class="nav-item nav-link"><i class="fas fa-file-invoice-dollar me-2"></i>Üyelik Listesi</a>
+        </div>
+    </nav>
+</div>
+<!-- Sidebar End -->

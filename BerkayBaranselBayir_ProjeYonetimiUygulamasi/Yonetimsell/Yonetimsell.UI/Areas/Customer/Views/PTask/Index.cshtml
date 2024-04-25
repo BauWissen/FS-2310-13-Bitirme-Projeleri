@@ -1,0 +1,396 @@
+﻿@using System.Globalization
+@using Yonetimsell.Shared.ComplexTypes
+@using Yonetimsell.Shared.Extensions
+@model CustomerPTaskListViewModel
+@if(Model.Low.Count > 0 || Model.Medium.Count > 0 || Model.High.Count > 0 || Model.Critical.Count > 0)
+{
+    <div class="container-fluid pt-4 px-4 h-100">
+        <div class="row g-4">
+            @if (Model.Critical.Count > 0)
+            {
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h4 class="mb-4 text-danger">Kritik Öncelikliler</h4>
+                        <table id="myDataTableCritical" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Görev Adı</th>
+                                    <th scope="col">Açıklaması</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Bitiş Tarihi</th>
+                                    <th scope="col">Süre</th>
+                                    <th scope="col" class="text-center">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var t in Model.Critical)
+                                {
+                                    <tr data-ptask-id="@t.Id">
+                                        <td>@t.Name</td>
+                                        @{
+                                            int lenght = t.Description.Length >= 30 ? 30 : t.Description.Length;
+                                        }
+                                        <td>@t.Description.Substring(0, lenght)@(t.Description.Length > 30 ? "..." : "")</td>
+                                        <td>@t.Status.GetDisplayName()</td>
+                                        <td>@t.DueDate.ToString("dd-MM-yyyy") @CultureInfo.GetCultureInfo("tr-TR").DateTimeFormat.GetDayName(t.DueDate.DayOfWeek)</td>
+                                        <td>
+                                            <div class="pg-bar mb-3">
+                                                <div class="progress">
+                                                    @{
+                                                        string timeBarColor = "";
+                                                        if (t.ProgressTimePercentage <= 25)
+                                                        {
+                                                            timeBarColor = "bg-success";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 50)
+                                                        {
+                                                            timeBarColor = "bg-info";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 75)
+                                                        {
+                                                            timeBarColor = "";
+                                                        }
+                                                        else if (t.ProgressTimePercentage < 100)
+                                                        {
+                                                            timeBarColor = "bg-warning";
+                                                        }
+                                                        else
+                                                        {
+                                                            timeBarColor = "bg-danger";
+                                                        }
+                                                    }
+                                                    <div class="progress-bar progress-bar-striped @timeBarColor" role="progressbar" aria-valuenow="@t.ProgressTimePercentage" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="m-n2 pb-3 pt-1 d-flex justify-content-evenly align-content-center">
+                                                <div class="btn-group" role="group">
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Detail" asp-route-pTaskId="@t.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Done" asp-route-pTaskId="@t.Id" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="OnHold" asp-route-pTaskId="@t.Id" class="btn btn-secondary"><i class="fas fa-pause"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Stuck" asp-route-pTaskId="@t.Id" class="btn btn-danger"><i class="fas fa-exclamation-triangle"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            @if (Model.High.Count > 0)
+            {
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h4 class="mb-4 text-warning">Yüksek Öncelikliler</h4>
+                        <table id="myDataTableHigh" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Görev Adı</th>
+                                    <th scope="col">Açıklaması</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Bitiş Tarihi</th>
+                                    <th scope="col">Süre</th>
+                                    <th scope="col" class="text-center">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var t in Model.High)
+                                {
+                                    <tr data-ptask-id="@t.Id">
+                                        <td>@t.Name</td>
+                                        @{
+                                            int lenght = t.Description.Length >= 30 ? 30 : t.Description.Length;
+                                        }
+                                        <td>@t.Description.Substring(0, lenght)@(t.Description.Length > 30 ? "..." : "")</td>
+                                        <td>@t.Status.GetDisplayName()</td>
+                                        <td>@t.DueDate.ToString("dd-MM-yyyy") @CultureInfo.GetCultureInfo("tr-TR").DateTimeFormat.GetDayName(t.DueDate.DayOfWeek)</td>
+                                        <td>
+                                            <div class="pg-bar mb-3">
+                                                <div class="progress">
+                                                    @{
+                                                        string timeBarColor = "";
+                                                        if (t.ProgressTimePercentage <= 25)
+                                                        {
+                                                            timeBarColor = "bg-success";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 50)
+                                                        {
+                                                            timeBarColor = "bg-info";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 75)
+                                                        {
+                                                            timeBarColor = "";
+                                                        }
+                                                        else if (t.ProgressTimePercentage < 100)
+                                                        {
+                                                            timeBarColor = "bg-warning";
+                                                        }
+                                                        else
+                                                        {
+                                                            timeBarColor = "bg-danger";
+                                                        }
+                                                    }
+                                                    <div class="progress-bar progress-bar-striped @timeBarColor" role="progressbar" aria-valuenow="@t.ProgressTimePercentage" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="m-n2 pb-3 pt-1 d-flex justify-content-evenly align-content-center">
+                                                <div class="btn-group" role="group">
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Detail" asp-route-pTaskId="@t.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Done" asp-route-pTaskId="@t.Id" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="OnHold" asp-route-pTaskId="@t.Id" class="btn btn-secondary"><i class="fas fa-pause"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Stuck" asp-route-pTaskId="@t.Id" class="btn btn-danger"><i class="fas fa-exclamation-triangle"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            @if (Model.Medium.Count > 0)
+            {
+                <div class="col-sm-12 col-xl-12">
+                    <div class="bg-light rounded h-100 p-4">
+                        <h4 class="mb-4 text-primary">Normal Öncelikliler</h4>
+                        <table id="myDataTableMedium" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Görev Adı</th>
+                                    <th scope="col">Açıklaması</th>
+                                    <th scope="col">Durum</th>
+                                    <th scope="col">Bitiş Tarihi</th>
+                                    <th scope="col">Süre</th>
+                                    <th scope="col" class="text-center">#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var t in Model.Medium)
+                                {
+                                    <tr data-ptask-id="@t.Id">
+                                        <td>@t.Name</td>
+                                        @{
+                                            int lenght = t.Description.Length >= 30 ? 30 : t.Description.Length;
+                                        }
+                                        <td>@t.Description.Substring(0, lenght)@(t.Description.Length > 30 ? "..." : "")</td>
+                                        <td>@t.Status.GetDisplayName()</td>
+                                        <td>@t.DueDate.ToString("dd-MM-yyyy") @CultureInfo.GetCultureInfo("tr-TR").DateTimeFormat.GetDayName(t.DueDate.DayOfWeek)</td>
+                                        <td>
+                                            <div class="pg-bar mb-3">
+                                                <div class="progress">
+                                                    @{
+                                                        string timeBarColor = "";
+                                                        if (t.ProgressTimePercentage <= 25)
+                                                        {
+                                                            timeBarColor = "bg-success";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 50)
+                                                        {
+                                                            timeBarColor = "bg-info";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 75)
+                                                        {
+                                                            timeBarColor = "";
+                                                        }
+                                                        else if (t.ProgressTimePercentage < 100)
+                                                        {
+                                                            timeBarColor = "bg-warning";
+                                                        }
+                                                        else
+                                                        {
+                                                            timeBarColor = "bg-danger";
+                                                        }
+                                                    }
+                                                    <div class="progress-bar progress-bar-striped @timeBarColor" role="progressbar" aria-valuenow="@t.ProgressTimePercentage" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="m-n2 pb-3 pt-1 d-flex justify-content-evenly align-content-center">
+                                                <div class="btn-group" role="group">
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Detail" asp-route-pTaskId="@t.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Done" asp-route-pTaskId="@t.Id" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="OnHold" asp-route-pTaskId="@t.Id" class="btn btn-secondary"><i class="fas fa-pause"></i></a>
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Stuck" asp-route-pTaskId="@t.Id" class="btn btn-danger"><i class="fas fa-exclamation-triangle"></i></a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+            @if (Model.Low.Count > 0)
+            {
+            <div class="col-sm-12 col-xl-12">
+                <div class="bg-light rounded h-100 p-4">
+                    <h4 class="mb-4 text-success">Düşük Öncelikliler</h4>
+                        <table id="myDataTableLow" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Görev Adı</th>
+                                <th scope="col">Açıklaması</th>
+                                <th scope="col">Durum</th>
+                                <th scope="col">Bitiş Tarihi</th>
+                                <th scope="col">Süre</th>
+                                <th scope="col" class="text-center">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var t in Model.Low)
+                            {
+                                <tr data-ptask-id="@t.Id">
+                                    <td>@t.Name</td>
+                                    @{
+                                        int lenght = t.Description.Length >= 30 ? 30 : t.Description.Length;
+                                    }
+                                    <td>@t.Description.Substring(0, lenght)@(t.Description.Length > 30 ? "..." : "")</td>
+                                    <td>@t.Status.GetDisplayName()</td>
+                                    <td>@t.DueDate.ToString("dd-MM-yyyy") @CultureInfo.GetCultureInfo("tr-TR").DateTimeFormat.GetDayName(t.DueDate.DayOfWeek)</td>
+                                        <td>
+                                            <div class="pg-bar mb-3">
+                                                <div class="progress">
+                                                    @{
+                                                        string timeBarColor = "";
+                                                        if (t.ProgressTimePercentage <= 25)
+                                                        {
+                                                            timeBarColor = "bg-success";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 50)
+                                                        {
+                                                            timeBarColor = "bg-info";
+                                                        }
+                                                        else if (t.ProgressTimePercentage <= 75)
+                                                        {
+                                                            timeBarColor = "";
+                                                        }
+                                                        else if (t.ProgressTimePercentage < 100)
+                                                        {
+                                                            timeBarColor = "bg-warning";
+                                                        }
+                                                        else
+                                                        {
+                                                            timeBarColor = "bg-danger";
+                                                        }
+                                                    }
+                                                    <div class="progress-bar progress-bar-striped @timeBarColor" role="progressbar" aria-valuenow="@t.ProgressTimePercentage" aria-valuemin="0" aria-valuemax="100"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    <td>
+                                        <div class="m-n2 pb-3 pt-1 d-flex justify-content-evenly align-content-center">
+                                            <div class="btn-group" role="group">
+                                                    <a asp-area="Customer" asp-controller="PTask" asp-action="Detail" asp-route-pTaskId="@t.Id" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                                <a asp-area="Customer" asp-controller="PTask" asp-action="Done" asp-route-pTaskId="@t.Id" class="btn btn-success"><i class="fas fa-check"></i></a>
+                                                <a asp-area="Customer" asp-controller="PTask" asp-action="OnHold" asp-route-pTaskId="@t.Id" class="btn btn-secondary"><i class="fas fa-pause"></i></a>
+                                                <a asp-area="Customer" asp-controller="PTask" asp-action="Stuck" asp-route-pTaskId="@t.Id" class="btn btn-danger"><i class="fas fa-exclamation-triangle"></i></a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="container-fluid pt-4 px-4">
+        <div class="row vh-100 bg-light rounded align-items-center justify-content-center mx-0">
+            <div class="col-md-6 text-center">
+                <h3>Mevcut göreviniz bulunmamaktadır.</h3>
+            </div>
+        </div>
+    </div>
+}
+@section Styles {
+    @await Html.PartialAsync("_DataTablesStylesPartial")
+}
+@section Scripts {
+    @await Html.PartialAsync("_LowPrioTasksDataTablesScriptPartial")
+    @await Html.PartialAsync("_MediumPrioTasksDataTablesScriptPartial")
+    @await Html.PartialAsync("_HighPrioTasksDataTablesScriptPartial")
+    @await Html.PartialAsync("_CriticalPrioTasksDataTablesScriptPartial")
+    <script>
+        document.querySelectorAll('#myDataTableCritical tbody tr').forEach(function (row) {
+            // Satır içerisindeki select ve button elementlerini dışarıda tut
+            var interactiveElements = row.querySelectorAll('td:not(.exclude-from-click) select, td:not(.exclude-from-click) a');
+            interactiveElements.forEach(function (element) {
+                element.addEventListener('dblclick', function (event) {
+                    event.stopPropagation(); // Satırın tıklanma işlemini durdur
+                });
+            });
+            // Satıra çift tıklanınca proje detay sayfasına yönlendirme işlemi
+            row.addEventListener('dblclick', function (event) {
+                var pTaskId = this.dataset.ptaskId; // Satırın dataset'inden proje ID'sini al
+                if (pTaskId) {
+                    // Proje detay sayfasına yönlendirme işlemi
+                    window.location.href = '/Customer/PTask/Detail?pTaskId=' + pTaskId;
+                }
+            });
+        });
+        document.querySelectorAll('#myDataTableHigh tbody tr').forEach(function (row) {
+            // Satır içerisindeki select ve button elementlerini dışarıda tut
+            var interactiveElements = row.querySelectorAll('td:not(.exclude-from-click) select, td:not(.exclude-from-click) a');
+            interactiveElements.forEach(function (element) {
+                element.addEventListener('dblclick', function (event) {
+                    event.stopPropagation(); // Satırın tıklanma işlemini durdur
+                });
+            });
+            // Satıra çift tıklanınca proje detay sayfasına yönlendirme işlemi
+            row.addEventListener('dblclick', function (event) {
+                var pTaskId = this.dataset.ptaskId; // Satırın dataset'inden proje ID'sini al
+                if (pTaskId) {
+                    // Proje detay sayfasına yönlendirme işlemi
+                    window.location.href = '/Customer/PTask/Detail?pTaskId=' + pTaskId;
+                }
+            });
+        });
+        document.querySelectorAll('#myDataTableMedium tbody tr').forEach(function (row) {
+            // Satır içerisindeki select ve button elementlerini dışarıda tut
+            var interactiveElements = row.querySelectorAll('td:not(.exclude-from-click) select, td:not(.exclude-from-click) a');
+            interactiveElements.forEach(function (element) {
+                element.addEventListener('dblclick', function (event) {
+                    event.stopPropagation(); // Satırın tıklanma işlemini durdur
+                });
+            });
+            // Satıra çift tıklanınca proje detay sayfasına yönlendirme işlemi
+            row.addEventListener('dblclick', function (event) {
+                var pTaskId = this.dataset.ptaskId; // Satırın dataset'inden proje ID'sini al
+                if (pTaskId) {
+                    // Proje detay sayfasına yönlendirme işlemi
+                    window.location.href = '/Customer/PTask/Detail?pTaskId=' + pTaskId;
+                }
+            });
+        });
+        document.querySelectorAll('#myDataTableLow tbody tr').forEach(function (row) {
+            // Satır içerisindeki select ve button elementlerini dışarıda tut
+            var interactiveElements = row.querySelectorAll('td:not(.exclude-from-click) select, td:not(.exclude-from-click) a');
+            interactiveElements.forEach(function (element) {
+                element.addEventListener('dblclick', function (event) {
+                    event.stopPropagation(); // Satırın tıklanma işlemini durdur
+                });
+            });
+            // Satıra çift tıklanınca proje detay sayfasına yönlendirme işlemi
+            row.addEventListener('dblclick', function (event) {
+                var pTaskId = this.dataset.ptaskId; // Satırın dataset'inden proje ID'sini al
+                if (pTaskId) {
+                    // Proje detay sayfasına yönlendirme işlemi
+                    window.location.href = '/Customer/PTask/Detail?pTaskId=' + pTaskId;
+                }
+            });
+        });
+    </script>
+}

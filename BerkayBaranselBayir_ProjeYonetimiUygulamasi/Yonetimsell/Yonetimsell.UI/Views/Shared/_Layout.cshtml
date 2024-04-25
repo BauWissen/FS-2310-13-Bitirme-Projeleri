@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Yonetimsell</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    @await Html.PartialAsync("_Styles")
+</head>
+<body>
+    @await Html.PartialAsync("_SpinnerPartial")
+    @await Html.PartialAsync("_NavbarPartial")
+    @RenderBody()
+    @await Html.PartialAsync("_FooterPartial")
+    @await Html.PartialAsync("_Scripts")
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

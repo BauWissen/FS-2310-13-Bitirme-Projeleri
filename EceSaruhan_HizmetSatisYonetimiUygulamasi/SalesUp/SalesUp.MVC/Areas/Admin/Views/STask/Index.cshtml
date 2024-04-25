@@ -1,0 +1,87 @@
+@using Microsoft.EntityFrameworkCore.Metadata.Internal
+@using System.Runtime.CompilerServices
+@model List<STaskViewModel>
+
+<div class="w-75 float-right container pr-5"> 
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body row justify-content-between align-items-center px-5">
+                        <div class="text-primary font-weight-bold display-4 mx-3 p-0">Görevlerim</div>
+                        <div>
+                            <a
+                                asp-area="Admin"
+                                asp-controller="STask"
+                                asp-action="DeleteAllTasks"
+                                class="btn btn-danger">Tümünü Sil</a>
+                 
+                            <a
+                                asp-area="Admin"
+                                asp-controller="STask"
+                                asp-action="Create"
+                                class="fa fa-plus-square text-success mx-4" style="font-size: 30px"></a>
+                        </div>
+                        <div class="card-content col-md-12">
+                            <div class="todo-list">
+                                        <ul>
+                                            @if (Model == null)
+                                            {
+                                                <div class="alert alert-warning mt-3" role="alert">
+                                                    Henüz bir göreviniz bulunmamaktadır.
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                    @foreach (var task in Model)
+                                            {
+                                                <li class="d-flex align-items-center justify-content-between mt-3">
+                                                
+                                                    <input onchange="changeIsCompleted(this,'@task.Id');" type="checkbox" class="custom-control-input" id="isCompleted_@task.Id" asp-for="@task.IsCompleted"/>
+                                                    <label class="custom-control-label" for="isCompleted_@task.Id"></label>
+                                               
+                                                    <input type="text" class="form-control" placeholder="@task.Title" aria-label="Example text with button addon" aria-describedby="button-addon1" disabled>
+                                       
+                                                <a
+                                                            asp-area="Admin"
+                                                            asp-controller="STask"
+                                                            asp-action="HardDelete"
+                                                            asp-route-id="@task.Id"
+                                                            class="fa fa-trash text-danger" style="font-size: 25px; margin-left: 20px"></a>
+                                                    <a
+                                                        asp-area="Admin"
+                                                        asp-controller="STask"
+                                                        asp-action="Edit"
+                                                        asp-route-id="@task.Id"
+                                                        class="fa fa-edit text-warning" style="font-size: 25px; margin-left: 20px"></a>
+                                            
+                                                </li>
+                                            }
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div> <!-- /.todo-list -->
+                        </div>
+                    </div> <!-- /.card-body -->
+                </div><!-- /.card -->
+            </div>
+
+
+
+@section Scripts{
+    <script>
+        const changeIsCompleted = function (element, id) {
+            $.ajax({
+                url: `/Admin/STask/UpdateIsCompleted/${id}`,
+                type: 'GET',
+                success: function (response) {
+                    $(element.id).attr("checked", response ? "checked" : "");
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        };
+        </script>
+}
+

@@ -1,0 +1,18 @@
+﻿using RhythmicRealm.Data.Abstract;
+using RhythmicRealm.Data.Concrete.Contexts;
+using RhythmicRealm.Entity.Concrete;
+
+namespace RhythmicRealm.Data.Concrete.Repositories
+{
+	public class MainCategoryRepository : GenericRepository<MainCategory>, IMainCategoryRepository
+	{
+		public MainCategoryRepository(RRContext _context) : base(_context)
+		{
+
+		}
+		private RRContext RRContext
+		{
+			get { return _dbContext as RRContext; }
+		}
+	}
+}

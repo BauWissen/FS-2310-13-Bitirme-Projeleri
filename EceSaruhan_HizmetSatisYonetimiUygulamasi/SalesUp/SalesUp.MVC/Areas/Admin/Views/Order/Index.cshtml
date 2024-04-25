@@ -1,0 +1,53 @@
+@model List<AdminOrderViewModel>
+
+<section class="content">
+    <div class="container-fluid">
+        <!-- Small boxes (Stat box) -->
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="myDataTable" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Tarih</th>
+                                <th>Kullanıcı</th>
+                                <th>Tutar</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                          
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.Id</td>
+                                    <td>@order.OrderDate</td>
+                                    <td>@order.UserName</td>
+                                    <td>@($"{order.TotalPrice:C0}")</td>
+                                </tr>
+                            }
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+</section>
+
+@section Styles
+{
+    @await Html.PartialAsync("_DataTablesStylePartial")
+}
+
+@section Scripts
+{
+    @await Html.PartialAsync("_DataTablesScriptsPartial")
+}

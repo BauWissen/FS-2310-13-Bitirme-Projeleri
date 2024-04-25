@@ -1,0 +1,21 @@
+﻿@model List<MovieViewModel>
+
+    <div class="container py-5">
+    </div>
+<!-- Portfolio Item-->
+@foreach (var m in Model)
+{
+    <div class="container">
+        <div class="row">
+             <div class="card bg-black m-3">
+                <img src="http://localhost:4100/images/Movies/@m.ImageUrl" class="img-fluid">
+                    <h4>@m.MovName</h4>
+                    <p>@m.MovIntro</p>
+                    <a href="http://localhost:4100/images/Movies/@m.ImageUrl"><i class="bi bi-zoom-in"></i></a>
+                    <a asp-area="" asp-controller="Movie" asp-action="Detail" asp-route-id="@m.Id" class="details-link"><i typeof="button" class="btn btn-primary">Detay</i></a>
+             </div>
+        </div>
+    </div>
+
+    <!-- End Portfolio Item -->
+}

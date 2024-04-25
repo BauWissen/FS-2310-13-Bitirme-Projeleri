@@ -1,0 +1,9 @@
+<mat-drawer-container class="role-create">
+  <mat-drawer #drawer mode="side" >
+    <app-create (createdRole)="createdRole($event)"></app-create>
+  </mat-drawer>
+  <mat-drawer-content>
+    <app-list></app-list>
+    <button mat-raised-button color="accent" class="product-create-button mt-5 ms-3"  mat-raised-button (click)="drawer.toggle()">Yeni Rol Ekle</button>
+  </mat-drawer-content>
+</mat-drawer-container>

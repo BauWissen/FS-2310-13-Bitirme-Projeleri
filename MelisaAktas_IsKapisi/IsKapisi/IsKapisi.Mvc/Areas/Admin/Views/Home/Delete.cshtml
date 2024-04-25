@@ -1,0 +1,29 @@
+﻿@model JobViewModel
+<div class="card mb-3 w-50 m-auto">
+    <div class="row g-0">
+        <div class="col-md-4 py-2 ps-2">
+            <img src="~/img/brand/@Model.ImageUrl" class="img-fluid rounded-start" alt="...">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Name</h5>
+                <p class="card-text">@Model.Properties</p>
+                <p class="card-text">
+                    
+                </p>
+            </div>
+            <div class="me-3 float-end">
+                <a asp-area="Admin"
+                   asp-controller="Home"
+                   asp-action="SoftDelete"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-warning">Çöpe Gönder</a>
+                <a asp-area="Admin"
+                   asp-controller="Home"
+                   asp-action="HardDelete"
+                   asp-route-id="@Model.Id"
+                   class="btn btn-danger">Kalıcı Olarak Sil</a>
+            </div>
+        </div>
+    </div>
+</div>

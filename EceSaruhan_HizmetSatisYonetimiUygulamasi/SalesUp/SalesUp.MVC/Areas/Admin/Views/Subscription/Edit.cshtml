@@ -1,0 +1,51 @@
+@model EditSubscriptionViewModel
+
+<div class="row w-75 float-right container pr-5">
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h1 class="text-danger">Abonelik Bilgilerini Düzenle</h1>
+        </div>
+        <div class="card-body card-block">
+            <form asp-area="Admin"
+                  asp-controller="Subscription"
+                  asp-action="Edit"
+                  method="post" class="form-horizontal">
+                <div class="row form-group">
+                    <div class="col col-md-2 text-success"><label asp-for="Name" class=" form-control-label"></label></div>
+                    <div class="col-12 col-md-6"><input asp-for="Name" type="text" placeholder="Abonelik Adını Giriniz..." class="form-control"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-2 text-success"><label asp-for="SubscriptionType" class=" form-control-label"></label></div>
+                    <div class="col-12 col-md-10"><input asp-for="SubscriptionType" type="text" placeholder="Abonelik Türünü Giriniz..." class="form-control"></div>
+                </div>
+                <div class="row form-group">
+                    <div class="col col-md-2 text-success"><label asp-for="Duration" class=" form-control-label"></label></div>
+                    <div class="col-12 col-md-10"><input asp-for="Duration" type="text" placeholder="Abonelik Süresini Giriniz..." class="form-control"></div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-2 text-success"><label asp-for="DurationUnit" class=" form-control-label"></label></div>
+                    <div class="col-12 col-md-10"><input asp-for="DurationUnit" type="text" placeholder="Abonelik Birimini Giriniz..." class="form-control"></div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-2 text-success"><label asp-for="Price" class=" form-control-label"></label></div>
+                    <div class="col-12 col-md-10"><input asp-for="Price" type="text" placeholder="Abonelik Birim Fiyatını Giriniz..." class="form-control"></div>
+                </div>
+
+                <div class="row form-group">
+                    <div class="col col-md-2 text-success"><label asp-for="Description" class=" form-control-label"></label></div>
+                    <div class="col-12 col-md-10"><textarea asp-for="Description" rows="9" placeholder="Abonelik Detayını Giriniz..." class="form-control"></textarea></div>
+                </div>
+
+                <a asp-area="Admin"
+                   asp-controller="Subscription"
+                   asp-action="Index"
+                   class="btn btn-warning text-white">Geri Dön</a>
+                <button class="btn btn-success" type="submit">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>

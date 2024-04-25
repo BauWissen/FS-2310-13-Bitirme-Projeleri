@@ -1,0 +1,22 @@
+﻿@model List<SerialTvViewModel>
+
+<div class="container py-5">
+    <h1 class="text-white d-flex ">Türler</h1>
+</div>
+
+<!-- Portfolio Item-->
+@foreach (var s in Model)
+{
+    <div class="container">
+        <div class="row">
+            <div class="card bg-black m-4">
+                <img src="http://localhost:4100/images/SerialTv/@s.ImageUrl" class="img-fluid">
+                <h4>@s.SerName</h4>
+                <p>@s.SerIntro</p>
+                <a href="http://localhost:4100/images/SerialTv/@s.ImageUrl" title="App 1" data-gallery="portfolio-gallery-app" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                <a asp-area="" asp-controller="SerialTv" asp-action="Detail" asp-route-id="@s.Id" class="details-link"><i typeof="button" class="btn btn-primary">Detay</i></a>
+            </div>
+        </div>
+    </div>
+}
+

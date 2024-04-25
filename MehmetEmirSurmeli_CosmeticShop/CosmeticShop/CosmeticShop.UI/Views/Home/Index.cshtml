@@ -1,0 +1,54 @@
+﻿@model List<ProductViewModel>
+@await Html.PartialAsync("_HeroPartial")
+@await Html.PartialAsync("_BannerSectionPartial") 
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">Öne Çıkan Ürünler</li>
+                    
+                </ul>
+            </div>
+        </div>
+        <div class="row product__filter">
+            @foreach (var p in Model)
+            {
+                <div class="col-lg-3 col-md-6 mix new-arrivals hot-sales">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="/images/products/@p.ImageUrl">
+                            <span class="label bg-danger text-white">New</span>
+                            <ul class="product__hover">
+                                <li><a href="#"><img src="images/products/icon/heart.png" alt=""></a></li>
+                                <li><a href="#"><img src="images/products/icon/compare.png" alt=""> <span>Compare</span></a></li>
+                                <li><a href="#"><img src="images/products/icon/search.png" alt=""></a></li>
+                            </ul>
+                        </div>
+                        <div class="product__item__text">
+                            <h6>@p.Name</h6>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                
+                                    <form asp-area=""
+                                          asp-controller="ShoppingCart"
+                                          asp-action="AddToCart">
+                                        <input type="hidden" name="productId" value="@p.Id" />
+                                        <input type="hidden" name="quantity" value="1" />
+                                        <button style="border:none;" type="submit"><a class="add-cart">+ Sepete Ekle</a></button>
+                                    </form>
+                                
+                            }
+                            <h5>@($"{p.Price:C0}")</h5>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Rhythmic Realm</title>
+
+		@await Html.PartialAsync("_StylesPartial")
+		@await RenderSectionAsync("Styles", false)
+	    @await RenderSectionAsync("TopScripts", false)
+</head>
+<body>
+		@await Html.PartialAsync("_HeaderPartial")
+
+		@RenderBody()
+		@await Html.PartialAsync("_FooterPartial")
+		@await Html.PartialAsync("_ScriptsPartial")
+		@await Component.InvokeAsync("Notyf");
+	    @await RenderSectionAsync("BottomScripts", false)
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Home - Append Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    @await Html.PartialAsync("_StylesPartial")
+    @await RenderSectionAsync("Styles", false)
+</head>
+
+<body class="index-page bg-black text-white " data-bs-spy="scroll" data-bs-target="#navmenu">
+    <div class="container">
+        @await Html.PartialAsync("_NavbarPartial")
+    </div>
+    <header id="header" class="header fixed-top d-flex align-items-center">
+        <div class="container-fluid d-flex align-items-center justify-content-between">
+        </div>
+    </header>
+    @RenderBody()
+
+
+    @await Html.PartialAsync("_FooterPartial") 
+
+
+    @await Html.PartialAsync("_ScriptsPartial")
+    @await RenderSectionAsync("Scripts", false)
+</body>
+
+</html>

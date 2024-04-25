@@ -1,0 +1,76 @@
+
+<header>
+     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+         <a 
+             asp-area=""
+             asp-controller="Home"
+             asp-action="Index"
+             class="navbar-brand p-0">
+                <h1 class="m-0 text-uppercase text-primary"><img style="width: 200px; height: 100px" src="~/AdminArea/images/salesuplogo.png"></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav ms-auto py-0 me-n3">
+                    <a
+                        asp-area=""
+                        asp-controller="Home"
+                        asp-action="Index"
+                        class="nav-item nav-link active">Ana Sayfa</a>
+                    <a
+                       asp-area=""
+                       asp-controller="About"
+                       asp-action="Index"
+                       class="nav-item nav-link">Hakkımızda</a>
+                    
+                    <a
+                       asp-area=""
+                       asp-controller="ContactUs"
+                       asp-action="Index"
+                       class="nav-item nav-link">İletişim</a>
+                    
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a
+                            asp-area=""
+                            asp-controller="Account"
+                            asp-action="Login"
+                            class="nav-item nav-link">Giriş Yap</a>
+                        <a 
+                            asp-area=""
+                            asp-controller="Account"
+                            asp-action="Register"
+                            class="nav-item nav-link">Kayıt Ol</a>
+                    }
+                    else
+                    {
+                        if (User.IsInRole("SuperAdmin") || User.IsInRole("Admin"))
+                        {
+                            <a
+                                asp-area="Admin"
+                                asp-controller="Home"
+                                asp-action="Index"
+                                class="nav-item nav-link">Admin Panel</a>
+                        }
+                        else
+                        {
+                            <a
+                                asp-area="Customer"
+                                asp-controller="Home"
+                                asp-action="Index"
+                            class="nav-item nav-link">Uygulamaya Git</a>
+                        }
+                        <a asp-area=""
+                           asp-controller="Account"
+                           asp-action="Profile" class="nav-item nav-link">@User.Identity.Name</a>
+                        <a asp-area=""
+                           asp-controller="Account"
+                           asp-action="Logout" class="nav-item nav-link">Çıkış</a>
+                    }
+                </div>
+            </div>
+        </nav>
+</header>
+
+

@@ -1,0 +1,60 @@
+﻿
+
+<a href="/" class="logo d-flex align-items-center me-auto me-xl-0">
+    <img src="~/templet/assets/img/logo.png" />
+    <h1>DiziSinema</h1>
+    <span>.</span>
+</a>
+
+
+<nav id="navmenu" class="navmenu bg-black text-white p-2">
+    <ul>
+        <li><a href="/" class="active">Ana Sayfa</a></li>
+        <li><a asp-area="" asp-controller="About" asp-action="Index">Hakkımızda</a></li>
+        <li class="dropdown has-dropdown">
+           <a><span>Film Türü Seçiniz</span> <i class="bi bi-chevron-down"></i></a>
+            <ul class="dd-box-shadow">
+                <li class="dropdown has-dropdown">
+                    @await Component.InvokeAsync("MovieGenre")
+                </li>
+            </ul>
+        </li>
+        <li class="dropdown has-dropdown">
+            <a><span>Dizi Türü Seçiniz</span> <i class="bi bi-chevron-down"></i></a>
+            <ul class="dd-box-shadow">
+                <li class="dropdown has-dropdown">
+                    @await Component.InvokeAsync("SerialTvGenre")
+                </li>
+            </ul>
+        </li>
+        <li><a asp-area="" asp-controller="Movie" asp-action="Index">Filmler</a></li>
+        <li><a asp-area="" asp-controller="SerialTv" asp-action="Index">Diziler</a></li>
+        <li><a asp-area="" asp-controller="Contact" asp-action="Index">İletişim</a></li>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <li><a asp-area="" 
+                asp-controller="Account" 
+                asp-action="Login">Giriş Yap</a>
+            </li>
+        }
+        else
+        {
+            if(User.IsInRole("SuperAdmin")|| User.IsInRole("Admin"))
+            {
+                <li>
+                    <a asp-area="Admin"
+                       asp-controller="Home"
+                       asp-action="Index">Admin Paneli</a>
+                </li>
+            }
+            <li>
+                <a asp-area=""
+                   asp-controller="Account"
+                   asp-action="Logout">Çıkış Yap</a>
+            </li>
+        }
+    </ul>
+
+    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+</nav>
+

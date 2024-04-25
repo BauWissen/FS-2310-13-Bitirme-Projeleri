@@ -1,0 +1,127 @@
+﻿@{
+    Layout = "_LoginRegisterLayout";
+}
+@model RegisterViewModel
+
+
+    <div class="register-box">
+        <div class="register-logo">
+            <a href="~/admin/index2.html"><b>Rhythmic</b>Realm</a>
+        </div>
+
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Merhaba,
+Rhythmic Realm'a hemen üye ol ve fırsatları yakala!</p>
+
+                <form 
+                    asp-area=""
+                    asp-controller="Account"
+                    asp-action="Register"
+                    method="post"
+                >
+                <label asp-for="FirstName"></label>
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="FirstName" type="text" class="form-control">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                   
+                    </div>
+            
+
+                <label asp-for="LastName"></label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+                      <div class="input-group mb-3">
+                        <input asp-for="LastName" type="text" class="form-control">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+           
+
+
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+                <div class="input-group mb-3">
+                    <input asp-for="Email" type="text" class="form-control">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                </div>
+              
+
+
+                <label asp-for="Password"></label>
+                <span asp-validation-for="Password" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="Password" type="password" class="form-control" >
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+        
+
+                <label asp-for="RePassword"></label>
+                <span asp-validation-for="RePassword" class="text-danger"></span>
+                    <div class="input-group mb-3">
+                        <input asp-for="RePassword" type="password" class="form-control" >
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="row">
+                        <div class="col-8">
+                           
+                            <input asp-for="MemberShipTerms" type="checkbox" id="memberShipTerms" name="memberShipTerms">
+                                <a href="#"  data-toggle="modal" data-target="#TermsModal">Şartları</a>  kabul ediyorum 
+                            </div>
+               
+                    <span asp-validation-for="MemberShipTerms" class="text-danger"></span>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-primary btn-block">Üye ol</button>
+                        </div>
+                 
+                        <!-- /.col -->
+                    </div>
+                </form>
+
+         
+            </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+    <!-- /.register-box -->
+
+<div class="modal" id="TermsModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           <div class="modal-header">
+               <h2 class="modal-title">Üyelik Sözleşmesi</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+         
+           </div>
+            <div class="modal-body">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+                Why do we use it?
+                It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+﻿@model MiniBasketViewModel
+
+<!-- Cart -->
+<div class="dropdown">
+	<a  class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+
+		<i class="fa fa-shopping-cart"></i>
+		<span>Sepetim</span>
+		<div class="qty">@Model.Count</div>
+	</a>
+	<div class="cart-dropdown">
+		<div class="cart-list">
+			@foreach (var item in Model.ShoppingBasket.BasketItems)
+			{
+				<div class="product-widget">
+					<div class="product-img">
+						<img src="./images/products/@item.ImageUrl" alt="">
+					</div>
+					<div class="product-body">
+						<h3 class="product-name"><a href="#">@item.Name</a></h3>
+						<h4 class="product-price"><span class="qty">@($"{item.Quantity}x")</span>@($"{item.Price:C2}")</h4>
+					</div>
+				
+				</div>
+			}
+			
+		</div>
+		<div class="cart-summary">
+			@{
+				var total = Model.ShoppingBasket.TotalPrice();
+				var discount = (double)total * 0.1;
+				var newTotal = (double)total - discount;
+			}
+			<h5>Toplam:@($"{newTotal:C2}")</h5>
+		</div>
+		<div class="cart-btns">
+			<a asp-area="" asp-controller="Basket" asp-action="Index">Sepeti Görüntüle</a>
+			<a asp-area="" asp-controller="CheckOut" asp-action="Checkout" class="btn btn-danger btn-lg btn-block">Sepeti Onayla</a>
+			
+			
+		</div>
+	</div>
+</div>
+<!-- /Cart -->

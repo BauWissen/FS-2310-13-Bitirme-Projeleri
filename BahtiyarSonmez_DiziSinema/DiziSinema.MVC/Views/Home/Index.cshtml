@@ -1,0 +1,59 @@
+﻿
+
+<main id="main">
+
+    <!-- Hero Section - Home Page -->
+    <section id="hero" class="hero" style="height: 20%;">
+
+
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-10">
+                    <h2 data-aos="fade-up" data-aos-delay="100">Web sitemize Hoşgeldiniz</h2>
+                    <p data-aos="fade-up" data-aos-delay="200">Film Ve Dizi Dünyası Burada</p>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- End Hero Section -->
+
+
+
+
+
+
+
+    <!-- Portfolio Section - Home Page -->
+    <section id="portfolio" class="portfolio">
+
+        <div class="container">
+
+            <div class="isotope-layout"  >
+
+                <ul class="portfolio-filters isotope-filters"  >
+                    <li data-filter="*" class="filter-active">Tümü</li>
+                    <li data-filter=".filter-app">Filmler</li>
+                    <li data-filter=".filter-product">Diziler</li>
+
+                </ul><!-- End Portfolio Filters -->
+                <div class="row gy-4 isotope-container"  >
+                    @await Component.InvokeAsync("MovieMain")
+
+
+                    @await Component.InvokeAsync("SerialTvMain")
+                </div><!-- End Portfolio Container -->
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- End Portfolio Section -->
+
+   
+    
+
+
+</main>

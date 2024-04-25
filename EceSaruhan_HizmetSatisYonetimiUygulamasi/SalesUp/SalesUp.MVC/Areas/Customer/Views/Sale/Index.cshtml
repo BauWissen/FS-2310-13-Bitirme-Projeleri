@@ -1,0 +1,103 @@
+﻿@model List<SaleViewModel>
+
+<div class="w-75 float-right container float-end pe-5 me-5 my-5">
+    <div class="col-sm-12 container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="mb-0 ms-4 text-primary">Satış Listesi</h1>
+                <div>
+                    <a asp-area="Customer"
+                       asp-controller="Sale"
+                       asp-action="DeleteAllSales"
+                       class="btn btn-danger">Tümünü Sil</a>
+
+                    <a asp-area="Customer"
+                       asp-controller="Sale"
+                       asp-action="Create"
+                       class="fa fa-plus-square text-success mx-4" style="font-size: 30px"></a>
+                </div>
+
+            </div>
+
+
+            @if (Model == null)
+            {
+                <div class="alert alert-warning mt-3" role="alert">
+                    Henüz satışınız bulunmamaktadır.
+                </div>
+            }
+
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table text-start align-middle table-bordered table-hover mb-0">
+                        <thead>
+                            <tr class="text-primary text-center">
+
+                                <th scope="col">Durum</th>
+                                <th scope="col">Tarih</th>
+                                <th scope="col">Müşteri</th>
+                                <th scope="col">Ürün</th>
+                                <th scope="col">Fiyat</th>
+                                <th class="text-center" scope="col">#</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var sale in Model)
+                            {
+
+                                <tr>
+                                    <td class="text-center">
+                                        <input onchange="changeIsCompleted(this,'@sale.Id');" type="checkbox" class="custom-control-input" id="isCompleted_@sale.Id" asp-for="@sale.IsCompleted" />
+                                        <label class="custom-control-label" for="isCompleted_@sale.Id"></label>
+                                    </td>
+                                    <td>@sale.CompletedDate</td>
+                                    <td>@sale.CustomerName</td>
+                                    <td>@sale.ProductName</td>
+                                    <td>@($"{sale.TotalPrice:C0}")</td>
+
+                                    <td>
+                                        <a asp-area="Customer"
+                                           asp-controller="Sale"
+                                           asp-action="HardDelete"
+                                           asp-route-id="@sale.Id"
+                                           class="fa fa-trash text-danger" style="font-size: 25px; margin-left: 20px"></a>
+
+                                        <a asp-area="Customer"
+                                           asp-controller="Sale"
+                                           asp-action="Edit"
+                                           asp-route-id="@sale.Id"
+                                           class="fa fa-edit text-warning" style="font-size: 25px; margin-left: 20px"></a>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+
+
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>const changeIsCompleted = function (element, id) {
+            $.ajax({
+                url: `/Customer/Sale/UpdateIsCompleted/${id}`,
+                type: 'GET',
+                success: function (response) {
+                    $(element.id).attr("checked", response ? "checked" : "");
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        };</script>
+}
+

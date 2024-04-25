@@ -1,0 +1,126 @@
+﻿@model List<SerialTvViewModel>
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class ="d-flex justify-content-between mb-2">
+                <div>
+                    <h1>Dizi Listelleri@(ViewBag.SerialTvShowDeleted ? "Çöp Kutusu" : "")</h1>
+                </div>
+                <div>
+                    <a asp-area="Admin"
+                       asp-controller="SerialTv"
+                       asp-action="Index"
+                       asp-route-id="@(!ViewBag.SerialTvShowDeleted)"
+                       class="btn btn-sm @(ViewBag.SerialTvShowDeleted ? "btn-info" : "btn-danger")">
+                        @(ViewBag.SerialTvShowDeleted ? "Ürün Listesine Geri Dön" : "Çöp Kutusu")
+                    </a>
+
+                    <a asp-area="Admin"
+                       asp-controller="SerialTv"
+                       asp-action="Create"
+                       class="btn btn-success btn-sm">Yeni Film</a>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table id="myDataTable" class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th width="55">Id</th>
+                                        <th>Ürün</th>
+                                        <th>Resim</th>
+                                        <th>Dublaj</th>
+                                        <th>Aktif</th>
+                                        <th width="55">#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var s in Model)
+                                    {
+                                        <tr>
+                                            <td>@s.Id</td>
+                                            <td>
+                                                <img style="width:150px;" src="http://localhost:4100/images/SerialTvs/@s.ImageUrl" />
+                                            </td>
+                                            <td>@s.SerName</td>
+                                            <td>@s.Serlanguage</td>
+                                            <td>
+                                                <form id="isActiveForm_@s.Id"
+                                                      asp-area="Admin"
+                                                      asp-controller="SerialTv"
+                                                      asp-action="UpdateIsActive"
+                                                      asp-route-id="@s.Id"
+                                                      method="post">
+                                                    <div class="custom-control custom-switch">
+                                                        <input onchange="document.getElementById('isActiveForm_@s.Id').submit();"
+                                                               type="checkbox" class="custom-control-input" id="isActive_@s.Id"
+                                                        @(s.IsActive ? "checked" : "") />
+                                                        <label class="custom-control-label" for="isActive_@s.Id"></label>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                @if (!ViewBag.SerialTvShowDeleted)
+                                                {
+                                                    <a asp-area="Admin"
+                                                       asp-controller="SerialTv"
+                                                       asp-action="Edit"
+                                                       asp-route-id="@s.Id"
+                                                       class="btn btn-warning btn-sm"><i class="far fa-edit"></i></a>
+                                                    <a asp-area="Admin"
+                                                       asp-controller="SerialTv"
+                                                       asp-action="Deleted"
+                                                       asp-route-id="@s.Id"
+                                                       class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-area="Admin"
+                                                       asp-controller="SerialTv"
+                                                       asp-action="SoftDeleted"
+                                                       asp-route-id="@s.Id"
+                                                       class="btn btn-warning btn-sm"><i class="fas fa-undo-alt"></i></a>
+                                                    <a asp-area="Admin"
+                                                       asp-controller="SerialTv"
+                                                       asp-action="HardDeleted"
+                                                       asp-route-id="@s.Id"
+                                                       class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+@section Styles {
+    @await Html.PartialAsync("_DataTablesCssPartial")
+}
+
+@section Scripts {
+    @await Html.PartialAsync("_DataTablesJsPartial")
+}

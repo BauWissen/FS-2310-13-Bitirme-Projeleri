@@ -1,0 +1,69 @@
+﻿@model AdminMessageViewModel
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+
+
+
+                @await Html.PartialAsync("_MessageBoxLeftSidePartialView")
+
+                <!-- /.col -->
+                <div class="col-md-9">
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                            <h3 class="card-title">Mail kutusu</h3>
+                            <span class="mailbox-read-time float-right">@Model.MessageDate</span>
+                        </div>
+                        <!-- /.card-header -->
+
+                        <div class="card-body p-0">
+                            <div class="mailbox-read-info">
+                                <h5>Konu: @Html.DisplayFor(x => x.Subject)</h5>
+                                <br />
+                                <h6>
+                                    Alıcı: @Html.DisplayFor(x => x.ReceiverMail)
+                                </h6>
+                            </div>
+
+                            <!-- /.mailbox-controls -->
+                            <div class="mailbox-read-message">
+                                <p>@Html.DisplayFor(x => x.Content)</p>
+
+                            </div>
+                            <!-- /.mailbox-read-message -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer bg-white">
+                        </div>
+                        <!-- /.card-footer -->
+                        <div class="card-footer">
+                            
+                            <button type="button" class="btn btn-default float-right"><i class="far fa-trash-alt"></i> Sil</button>
+                    
+                        </div>
+                        <!-- /.card-footer -->
+
+
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

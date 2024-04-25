@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TeamTask.Business\TeamTask.Business.csproj" />
+    <ProjectReference Include="..\TeamTask.Core\TeamTask.Core.csproj" />
+    <ProjectReference Include="..\TeamTask.Data\TeamTask.Data.csproj" />
+  </ItemGroup>
+
+</Project>

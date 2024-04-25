@@ -1,0 +1,53 @@
+﻿@model AddProductViewModel
+
+<div class="row w-75 float-right container float-end pe-5 me-5 my-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-success pt-2">Yeni Ürün Ekle</h3>
+            </div>
+            <div class="card-body card-block">
+                <form asp-area="Customer"
+                      asp-controller="Product"
+                      asp-action="Create"
+                      method="post" class="form-horizontal">
+
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="Name" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="Name" type="text" placeholder="Ürün Adını Giriniz..." class="form-control"></div>
+                    </div>
+
+ 
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="Quantity" class=" form-control-label">Miktar</label></div>
+                        <div class="col-12 col-md-10"><input asp-for="Quantity" type="text" placeholder="Ürün Miktarı Giriniz..." class="form-control"></div>
+                    </div>
+
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="Unit" class=" form-control-label">Birim</label></div>
+                        <div class="col-12 col-md-10"><input asp-for="Unit" type="text" placeholder="Ürün Birimi Giriniz..." class="form-control"></div>
+                    </div>
+
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="UnitPrice" class=" form-control-label">Birim Fiyat</label></div>
+                        <div class="col-12 col-md-10"><input asp-for="UnitPrice" type="text" placeholder="Ürünün Birim Fiyatını Giriniz..." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="Properties" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><textarea asp-for="Properties" rows="9" placeholder="Satış Detayını Giriniz..." class="form-control"></textarea></div>
+                    </div>
+
+                    <a asp-area="Customer"
+                       asp-controller="Product"
+                       asp-action="Index"
+                       class="btn btn-warning text-white">Geri Dön</a>
+                    <button class="btn btn-success float-end" type="submit">Satışlara Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

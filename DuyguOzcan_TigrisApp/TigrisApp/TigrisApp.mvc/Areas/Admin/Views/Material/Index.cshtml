@@ -1,0 +1,50 @@
+@model List<MaterialViewModel>
+@await Html.PartialAsync("_ContentHeaderPartial", new ContentHeaderModel
+{
+    PageTitle = "Malzeme Listesi",
+    ControllerName = "material",
+    ButtonText = "Malzeme Ekle"
+})
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="mytable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Malzeme</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var material in Model)
+                                {
+                                    <tr>
+                                        <td>@material.Id</td>
+                                        <td>@material.Name</td>
+                                        <td>
+                                            <a asp-controller="material" asp-action="edit" asp-area="admin"
+                                                asp-route-id="@material.Id" class="btn btn-warning">Düzelt</a>
+                                            <a asp-controller="material" asp-action="delete" asp-area="admin" asp-route-id="@material.Id" class="btn btn-danger">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

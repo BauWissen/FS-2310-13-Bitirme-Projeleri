@@ -1,0 +1,23 @@
+﻿ <!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__close">+</div>
+    <ul class="offcanvas__widget">
+
+        @await Component.InvokeAsync("MessageNotification")
+        @await Component.InvokeAsync("ShoppingCartNotification", User.Identity.Name ?? null)
+    </ul>
+    <div class="offcanvas__logo">
+        <a href="./index.html"><img src="/ui/img/logos.png" alt=""></a>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__auth">
+        <a asp-area=""
+           asp-controller="Account"
+           asp-action="Login">Login</a>
+        <a asp-area=""
+           asp-controller="Account"
+           asp-action="Register">Register</a>
+    </div>
+</div>
+<!-- Offcanvas Menu End -->

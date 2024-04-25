@@ -1,0 +1,94 @@
+﻿   <!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Yönetim Paneli</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <p>Film Listesi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <a 
+                            asp-area="Admin"
+                           asp-controller="Movie"
+                           asp-action="Index"
+                           class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <p>Dizi Listesi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <a 
+                            asp-area="Admin"
+                           asp-controller="SerialTv"
+                           asp-action="Index"
+                           class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                    <p>Tür Listesi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-genderless"></i>
+                        </div>
+                        <a 
+                            asp-area="Admin"
+                           asp-controller="Genre"
+                           asp-action="Index"
+                           class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <p>Kullanıcı Listesi</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-pie-graph"></i>
+                        </div>
+                        <a 
+                            asp-area="Admin"
+                            asp-controller="UserRoles"
+                            asp-action="Index"
+                           class="small-box-footer">Daha fazla bilgi <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

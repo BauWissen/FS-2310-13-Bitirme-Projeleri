@@ -1,0 +1,45 @@
+@model List<SupplierViewModel>
+@await Html.PartialAsync("_ContentHeaderPartial", new ContentHeaderModel {PageTitle="Tedarikçi Listesi", ControllerName="Supplier", ButtonText="Tedarikçi Ekle"})
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="mytable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Tedarikçi</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var supplier in Model)
+                                {
+                                    <tr>
+                                        <td>@supplier.Id</td>
+                                        <td>@supplier.Name</td>
+                                        <td>
+                                            <a asp-area="admin" asp-controller="supplier" asp-action="edit" asp-route-id="@supplier.Id" class="btn btn-warning">Düzelt</a>
+                                            <a asp-area="admin" asp-controller="supplier" asp-action="delete"
+                                                asp-route-id="@supplier.Id" class="btn btn-danger">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,189 @@
+﻿	<!-- HEADER -->
+	<style>
+	.header-search {
+		padding: 15px 0px;
+	}
+
+		.header-search form {
+			position: relative;
+			margin-left: 100px;
+		}
+
+			.header-search form .input-select {
+				margin-right: -4px;
+				border-radius: 40px 0px 0px 40px;
+			}
+
+			.header-search form .input {
+				width: calc(100% - 100px);
+				margin-right: -4px;
+			}
+
+			.header-search form .search-btn {
+				height: 40px;
+				width: 100px;
+				background: #D10024;
+				color: #FFF;
+				font-weight: 700;
+				border: none;
+				border-radius: 0px 40px 40px 0px;
+			}
+	</style>
+<header>
+	<!-- TOP HEADER -->
+	<div id="top-header">
+		<div class="container">
+			<ul class="header-links pull-left">
+				<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
+				<li><a href="#"><i class="fa fa-envelope-o"></i> rhythmicsite@hotmail.com</a></li>
+				<li><a href="#"><i class="fa fa-map-marker"></i> Beşiktaş İSTANBUL</a></li>
+			</ul>
+			<ul class="header-links pull-right">
+				<li><a asp-area="" asp-controller="AboutUs" asp-action="Index" target="_blank"> Hakkımızda</a></li>
+				<li><a asp-area="" asp-controller="Contact" asp-action="Index" target="_blank"> İletişim</a></li>
+			</ul>
+
+		</div>
+	</div>
+	<!-- /TOP HEADER -->
+	<!-- MAIN HEADER -->
+	<div id="header">
+		<!-- container -->
+		<div class="container">
+			<!-- row -->
+			<div class="row">
+
+				<div class="container-edit">
+					<div class="col-lg-2 col-md-2 col-sm-2 hidden-xs">
+
+						<div class="logo_container" style="margin-top:20px;">
+							<a style="color:#d21737;font-size: 24px;font-weight: 700;text-transform: uppercase;" href="/">Rhythmic<span style="color:#fff">Realm</span></a>
+						</div>
+
+					</div>
+
+					<div class="col-lg-6 col-md-6 col-sm-12">
+						<!-- SEARCH BAR -->
+
+						<div class="header-search">
+							<form id="searchForm" asp-area="" asp-controller="Store" asp-action="Search" method="post">
+								<input name="query" id="query" class="input" placeholder="Aradığınız ürün, kategori, marka.. ">
+								<button type="submit" class="search-btn">Ara</button>
+							</form>
+						</div>
+
+						<!-- /SEARCH BAR -->
+
+					</div>
+
+					<div class="col-lg-4 col-md-4 col-sm-12 clear-fix">
+						<div class="header-ctn">
+							@if (User.Identity.IsAuthenticated)
+
+							{
+								@if (User.IsInRole("Admin") || User.IsInRole("SuperAdmin"))
+								{
+									<div>
+										<a asp-area="Admin" asp-controller="Home" asp-action="Index">
+											<i class="fa fa-lock" aria-hidden="true"></i>
+											<span>Admin Panel</span>
+										</a>
+									</div>
+									<div>
+										<div class="dropdown text-center">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white" role="button" aria-haspopup="true" aria-expanded="false">
+
+												<i class="fa fa-user-o " aria-hidden="true"></i>
+												<div>Hesabım</div>
+
+											</a>
+											<ul class="dropdown-menu">
+												<li><a asp-area="" asp-controller="CheckOut" asp-action="GetOrders"> <i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span>Siparişlerim</span> </a></li>
+												<li role="separator" class="divider"></li>
+												<li><a asp-area="" asp-controller="FavProducts" asp-action="Index"><i class="fa fa-heart-o" aria-hidden="true"></i> <span>Favorilerim</span></a></li>
+												<li role="separator" class="divider"></li>
+												<li><a asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa fa-user-o" aria-hidden="true"></i> <span>Kullanıcı Bilgilerim</span></a></li>
+												<li role="separator" class="divider"></li>
+												<li><a asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa fa-sign-out" aria-hidden="true"></i> <span>Çıkış Yap</span></a></li>
+											</ul>
+										</div>
+									</div>
+
+									@await Component.InvokeAsync("Cart")
+								}
+								else
+								{
+									<div>
+										<div class="dropdown text-center">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white" role="button" aria-haspopup="true" aria-expanded="false">
+
+												<i class="fa fa-user-o " aria-hidden="true"></i>
+												<div>Hesabım</div>
+
+											</a>
+											<ul class="dropdown-menu">
+												<li><a asp-area="" asp-controller="CheckOut" asp-action="GetOrders"> <i class="fa fa-credit-card-alt" aria-hidden="true"></i> <span>Siparişlerim</span> </a></li>
+												<li role="separator" class="divider"></li>
+												<li><a asp-area="" asp-controller="FavProducts" asp-action="Index"><i class="fa fa-heart-o" aria-hidden="true"></i> <span>Favorilerim</span></a></li>
+												<li role="separator" class="divider"></li>
+												<li><a asp-area="" asp-controller="Account" asp-action="Profile"><i class="fa fa-user-o" aria-hidden="true"></i> <span>Kullanıcı Bilgilerim</span></a></li>
+												<li role="separator" class="divider"></li>
+												<li><a asp-area="" asp-controller="Account" asp-action="Logout"><i class="fa fa-sign-out" aria-hidden="true"></i> <span>Çıkış Yap</span></a></li>
+											</ul>
+										</div>
+									</div>
+
+									@await Component.InvokeAsync("Cart")
+								}
+
+
+							}
+							else
+							{
+								<div>
+									<a asp-area=""
+									   asp-controller="Account"
+									   asp-action="Login">
+										<i class="fa fa-user-o" aria-hidden="true"></i>
+										<span>Giriş Yap</span>
+
+									</a>
+
+								</div>
+								<div>
+									<a asp-area=""
+									   asp-controller="Account"
+									   asp-action="Register">
+										<i class="fa fa-user-o" aria-hidden="true"></i>
+										<span>Kayıt ol</span>
+
+									</a>
+
+								</div>
+							
+							}
+
+
+
+							<!-- Menu Toogle -->
+							<div class="menu-toggle">
+								<a href="#">
+									<i class="fa fa-bars"></i>
+									<span>Menu</span>
+								</a>
+							</div>
+							<!-- /Menu Toogle -->
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+			<!-- row -->
+		</div>
+		<!-- container -->
+	</div>
+	<!-- /MAIN HEADER -->
+</header>
+<!-- /HEADER -->
+

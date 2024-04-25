@@ -1,0 +1,182 @@
+﻿@model ShoppingBasketViewModel
+
+@{
+    Layout = "_BasketLayout";
+}
+<!-- SECTION -->
+<div class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+
+			<main class="page">
+				<section class="shopping-cart dark">
+					<div class="container">
+						<div class="content">
+							<div class="row">
+								@if (Model.BasketItems.Count == 0)
+								{
+									<div class="alert alert-warning">
+										Sepetinizde ürün bulunmamaktadır.
+									</div>
+								}
+								<div class="col-md-12 col-lg-8">
+										<div class="items">
+
+											@foreach (var item in Model.BasketItems)
+											{
+												<div class="product">
+													<div class="row">
+														<div class="col-md-3">
+															<img style="width:150px;" class="img-fluid mx-auto d-block image" src="~/images/products/@item.ImageUrl">
+														</div>
+														<div class="col-md-9">
+															<div class="info">
+																<div class="row">
+																	<div class="col-md-5 product-name">
+																		<div class="product-name">
+																			<a asp-area="" asp-controller="ProductDetails" asp-action="Index" asp-route-id="@item.ProductId">@item.Name</a>
+
+																		</div>
+																	</div>
+																	<div class="col-md-2 quantity">
+																		<label for="quantity">Adet</label>
+																	<input onchange="changeQuantity(this)" data-item-id="@item.BasketItemId" id="quantity-@item.ProductId" type="number" value="@item.Quantity" class="form-control quantity-input">
+																	</div>
+																<div class="col-md-3 price">
+																	<span id="item-total-@item.BasketItemId">@($"{(item.Price * item.Quantity):C2}")</span>
+																</div>
+																	<div class="col-md-1">																		<a asp-area="" asp-controller="Basket" asp-action="RemoveFromBasket" asp-route-productId="@item.ProductId" style="float: right;">
+																			<i style="font-size:18px;" class="fa fa-trash" aria-hidden="true"></i>
+																		</a>
+																	</div>
+																</div>
+
+															</div>
+														</div>
+													</div>
+
+
+												</div>
+											}
+
+										</div>
+								</div>
+								
+								<div class="col-md-12 col-lg-4">
+									<div class="summary">
+										@{
+											var total = Model.BasketItems.Sum(x => x.Price * x.Quantity);
+											var discount = (double)total * 0.1;
+											var newTotal = (double)total - discount;
+										}
+										<h3>Sipariş Özeti</h3>
+										<div class="summary-item">
+											<span class="text">Ürünün Toplamı</span>
+											<span id="basket-total" class="price">@($"{total:C2}")</span>
+										</div>
+										<div class="summary-item">
+											
+											<span class="text">Sepette %10 İndirim </span><span id="discount" class="price">@($"{discount:C2}")</span>
+										</div>
+										<div class="summary-item">
+											<span class="text">Kargo</span><span class="price">@($"{0:C2}")</span>
+										</div>
+										<div class="summary-item">
+											<span class="text">Toplam</span><span id="new-total" class="price">@($"{newTotal:C2}")</span>
+										</div>
+										<div>
+											@if (User.Identity.IsAuthenticated)
+											{
+												<a asp-area="" asp-controller="CheckOut" asp-action="Checkout" class="btn btn-danger btn-lg btn-block">Sepeti Onayla</a>
+											}
+											else
+											{
+												<a asp-area="" asp-controller="Account" asp-action="Login" class="btn btn-danger btn-lg btn-block">Sepeti Onayla</a>
+											}
+
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- NEWSLETTER -->
+<div id="newsletter" class="section">
+	<!-- container -->
+	<div class="container">
+		<!-- row -->
+		<div class="row">
+			<div class="col-md-12">
+				<div class="newsletter">
+					<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+					<form>
+						<input class="input" type="email" placeholder="Enter Your Email">
+						<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
+					</form>
+					<ul class="newsletter-follow">
+						<li>
+							<a href="#"><i class="fa fa-facebook"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-pinterest"></i></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- /row -->
+	</div>
+	<!-- /container -->
+</div>
+<!-- /NEWSLETTER -->
+
+<script>
+	function changeQuantity(element) {
+		var newQuantity = $(element).val();
+		var itemId = $(element).data("item-id");
+		var minQuantity = 1;
+		if (newQuantity < minQuantity) {
+			$(element).val(minQuantity);
+			newQuantity = minQuantity;
+		}
+
+		$.ajax({
+			type: "POST",
+			url: "/Basket/UpdateQuantity",
+			data: { shoppingBasketItemId: itemId, quantity: newQuantity },
+			success: function (response) {
+				if (response.success) {
+					var updatedItemTotalId = "#item-total-" + itemId;
+					$(updatedItemTotalId).text(response.basketItemTotal);
+
+					$("#discount").text(response.discount);
+					$("#basket-total").text(response.basketTotal);
+					$("#new-total").text(response.newTotal);
+
+				} else {
+					alert("Bir hata oluştu: " + response.message);
+				}
+			},
+			error: function () {
+				alert("Bir hata oluştu. Lütfen tekrar deneyin.");
+			}
+		});
+	}
+</script>

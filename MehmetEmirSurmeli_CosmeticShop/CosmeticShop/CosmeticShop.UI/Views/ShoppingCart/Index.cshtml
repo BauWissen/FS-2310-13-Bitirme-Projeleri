@@ -1,0 +1,171 @@
+﻿@model ShoppingCartViewModel
+
+<!-- Shopping Cart Section Begin -->
+<section class="shopping-cart spad">
+    <div class="container">
+         @if (Model.ShoppingCartItems.Count == 0)
+        {
+            <div class="alert alert-warning text-center p-5">
+                <span>Sepetinizde ürün bulunmamaktadır.</span>
+            </div>
+        }
+        else
+        {
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="shopping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Ürün</th>
+                                    <th>Adet</th>
+
+                                <th>Fiyat</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in Model.ShoppingCartItems)
+                            {
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic">
+                                            <img src="/images/products/@item.ProductImageUrl" alt="" style="height:100px; width:150px;">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>@item.ProductName</h6>
+                                            <h5>@($"{item.ProductPrice:C0}")</h5>
+                                        </div>
+                                    </td>
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                    <span class="fa fa-angle-left dec qtybtn" onclick="decrement(quantity_@item.Id, @item.Id);" id="dec_@item.Id"></span>
+
+                                                 <input type="text" name="quantity" id="quantity_@item.Id" value="@item.Quantity">
+
+                                                    <span onclick="increment(quantity_@item.Id, @item.Id);" id="inc_@item.Id" class="fa fa-angle-right inc qtybtn"></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                        @{
+                                            var total = item.ProductPrice * item.Quantity;
+                                        }
+                                    <td id="cart_item_total_@item.Id" class="cart__total">@($"{total:C0}")</td>
+                                    
+                                </tr>
+
+                            }
+                          
+                        </tbody>
+                        
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn">
+                            <a asp-area="" asp-action="Index" asp-controller="Products">Alışverişe Devam Et</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <div class="continue__btn update__btn">
+                                <a onclick="clearCart(@Model.Id)"><i class="fa fa-spinner"></i> Sepeti Temizle</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="cart__total">
+                    <h6>Sepet Tutarı</h6>
+                    <ul>
+                        @{
+                            var cartSubTotal = Model.TotalPrice() / 1.2m;// varsayılan vergi oranı %20
+                            var cartTotal = Model.TotalPrice();
+                        }
+                        <li>KDV'siz tutar: <span id="sub-total">@($"{(Model.TotalPrice() / 1.2m):C0}")</span></li>
+                        <li>KDV dahil tutar: <span id="total">@($"{Model.TotalPrice():C0}")</span></li>
+                    </ul>
+                    <a asp-area="" asp-controller="Order" asp-action="Checkout" class="primary-btn">Ödemeye adımına devam et</a>
+                </div>
+            </div>
+            </div>
+        }
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+@section Scripts {
+    <script>
+        function clearCart(id) {
+            $.ajax({
+                url: `/ShoppingCart/ClearCart/${id}`,
+                type: 'GET',
+                success: () => {
+                    $('#cart-container').html(`
+                                <div class="alert alert-warning text-center p-5">
+                                    <span>Sepetinizde ürün bulunmamaktadır.</span>
+                                </div>
+                            `);
+
+                },
+                error: (err) => {
+                    console.err(err);
+                }
+            });
+        }
+
+        function decrement(element, id) {
+            let qty = element.value;
+            let cartTotalElement = $(`#cart_item_total_${id}`);
+            if (qty > 1) {
+                qty -= 1;
+            } else {
+                qty = 1;
+            }
+            $.ajax({
+                url: '/ShoppingCart/ChangeQuantity',
+                type: 'POST',
+                data: {
+                    itemId: id,
+                    quantity: qty
+                },
+                success: function (response) {
+                    element.value = qty;
+                    cartTotalElement.text(response.cartItemTotal);
+                    $('#sub-total').text(response.cartSubTotal);
+                    $('#total').text(response.cartTotal);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+
+
+
+        }
+
+        function increment(element, id) {
+            let qty = Number(element.value);
+            let cartTotalElement = $(`#cart_item_total_${id}`);
+            qty += 1;
+            $.ajax({
+                url: '/ShoppingCart/ChangeQuantity',
+                type: 'POST',
+                data: {
+                    itemId: id,
+                    quantity: qty
+                },
+                success: function (response) {
+                    element.value = qty;
+                    cartTotalElement.text(response.cartItemTotal);
+                    $('#sub-total').text(response.cartSubTotal);
+                    $('#total').text(response.cartTotal);
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+        }
+    </script>
+}

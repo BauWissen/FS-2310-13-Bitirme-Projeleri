@@ -1,0 +1,53 @@
+  <div class="sidebar pe-4 pe-5 pt-5 mt-5">
+            <nav class="navbar bg-light navbar-light">
+                <div class="d-flex align-items-center ms-4 mb-3">
+                    <div class="position-relative">
+                        <a
+                           asp-area="Customer"
+                           asp-controller="Account"
+                           asp-action="Profile"
+                           class="btn btn-danger rounded-circle mt-2" alt="" style="width: 40px; height: 40px;"><i class="fa fa-user"></i></a>
+                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1 mt-2"></div>
+                    </div>
+                    <div class="ms-1">
+                        <a asp-area="Customer"
+                           asp-controller="Account"
+                           asp-action="Profile" class="nav-item nav-link text-danger">@User.Identity.Name</a>                                  
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a asp-area="Customer"
+                       asp-controller="Home"
+                       asp-action="Index"
+                       class="nav-item nav-link active mt-3"><i class="fa fa-home me-2"></i>Ana Sayfa</a>
+                    <a asp-area="Customer"
+                       asp-controller="STask"
+                       asp-action="Index"
+                       class="nav-item nav-link mt-3"><i class="fa fa-th me-2"></i>Görevlerim</a>
+                    <a asp-area="Customer"
+                       asp-controller="Product"
+                       asp-action="Index"
+                       class="nav-item nav-link mt-3"><i class="fa fa-table me-2"></i>Ürünler</a>
+
+                    <a asp-area="Customer"
+                       asp-controller="Customer"
+                       asp-action="Index"
+                       class="nav-item nav-link mt-3"><i class="fa fa-user me-2"></i>Müşteriler</a>
+
+                    <a asp-area="Customer"
+                       asp-controller="Sale"
+                       asp-action="Index"
+                       class="nav-item nav-link mt-3"><i class="fa fa-chart-bar me-2"></i>Satışlar</a>
+
+                    <a asp-area="Customer"
+                       asp-controller="Message"
+                       asp-action="Index"
+                       class="nav-item nav-link mt-3"><i class="fa fa-envelope me-2"></i>Mesajlar</a>
+
+                    <a asp-area=""
+                       asp-controller="Home"
+                       asp-action="Index"
+                       class="nav-item nav-link mt-3"><i class="fa fa-sign-out me-2"></i>Çıkış Yap</a>
+                </div>
+            </nav>
+        </div>

@@ -1,0 +1,45 @@
+@model List<RegionViewModel>
+
+@await Html.PartialAsync("_ContentHeaderPartial",new ContentHeaderModel{PageTitle="Bölge Listesi",ControllerName="region",ButtonText="Bölge Ekle"})
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">DataTable with default features</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="mytable" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Bölge</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var region in Model)
+                                {
+                                    <tr>
+                                        <td>@region.Id</td>
+                                        <td>@region.Name</td>
+                                        <td>
+                                            <a asp-area="admin" asp-action="edit" asp-controller="region" asp-route-id="@region.Id" class="btn btn-warning">Düzelt</a>
+                                            <a asp-area="admin" asp-action="delete" asp-controller="region" asp-route-id="@region.Id"  class="btn btn-danger">Sil</a>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

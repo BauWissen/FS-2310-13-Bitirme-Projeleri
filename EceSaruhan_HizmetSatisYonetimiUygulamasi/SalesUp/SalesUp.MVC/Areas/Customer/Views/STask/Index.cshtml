@@ -1,0 +1,74 @@
+@model List<STaskViewModel>
+
+<div class="w-75 float-right container float-end pe-5 me-5 my-5">
+  
+    <div class="h-100 bg-light rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h1 class="mb-0 ms-4 text-primary">Görevlerim</h1>
+            <div>
+                <a asp-area="Customer"
+                   asp-controller="STask"
+                   asp-action="DeleteAllTasks"
+                   class="btn btn-danger">Tümünü Sil</a>
+
+                <a asp-area="Customer"
+                   asp-controller="STask"
+                   asp-action="Create"
+                   class="fa fa-plus-square text-success mx-4" style="font-size: 30px"></a>
+            </div>
+
+        </div>
+
+
+        @if (Model == null)
+        {
+            <div class="alert alert-warning mt-3" role="alert">
+                Henüz bir göreviniz bulunmamaktadır.
+            </div>
+        }
+        else
+        {
+            @foreach (var task in Model)
+            {
+                <div class="d-flex align-items-center border-bottom py-2">
+                    <input onchange="changeIsCompleted(this,'@task.Id');" type="checkbox" class="custom-control-input" id="isCompleted_@task.Id" asp-for="@task.IsCompleted" />
+                    <label class="custom-control-label" for="isCompleted_@task.Id"></label>
+
+                    <div class="w-100 ms-3">
+                        <div class="d-flex w-100 align-items-center justify-content-between">
+                            <input type="text" class="form-control" placeholder="@task.Title" aria-label="Example text with button addon" aria-describedby="button-addon1" disabled>
+                            <a asp-area="Customer"
+                               asp-controller="STask"
+                               asp-action="HardDelete"
+                               asp-route-id="@task.Id"
+                               class="fa fa-trash text-danger" style="font-size: 25px; margin-left: 20px"></a>
+                            <a asp-area="Customer"
+                               asp-controller="STask"
+                               asp-action="Edit"
+                               asp-route-id="@task.Id"
+                               class="fa fa-edit text-warning" style="font-size: 25px; margin-left: 20px"></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+
+
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>const changeIsCompleted = function (element, id) {
+            $.ajax({
+                url: `/Customer/STask/UpdateIsCompleted/${id}`,
+                type: 'GET',
+                success: function (response) {
+                    $(element.id).attr("checked", response ? "checked" : "");
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+        };</script>
+}

@@ -1,0 +1,74 @@
+﻿@model List<MessageViewModel>
+
+<div class="container-fluid pt-4 px-4 h-100">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0 display-6">Mesajlarım</h6>
+            <a asp-area="Customer" asp-controller="Message" asp-action="SendMessage" class="btn btn-primary">Yeni mesaj gönder <i class="fas fa-plus"></i></a>
+        </div>
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="table-responsive">
+                <table id="myDataTable" class="table text-start align-middle table-bordered table-hover mb-0">
+                    <thead>
+                        <tr class="text-dark">
+                            <th scope="col"></th>
+                            <th scope="col">İsmi</th>
+                            <th scope="col">Kullanıcı adı</th>
+                            <th scope="col">Mesaj</th>
+                            <th scope="col">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var m in Model)
+                        {
+                            <tr data-message-id="@m.Id">
+                                <td class="col-1 text-center"><img src="@m.SenderImageUrl" style="width:50px; height:50px" class="rounded-circle" /></td>
+                                <td>@m.SenderFullName</td>
+                                <td>@m.SenderUserName</td>
+                                @{
+                                    int length = m.Text.Length >= 10 ? 10 : m.Text.Length;
+                                }
+                                <td>@m.Text.Substring(0, length)</td>
+                                <td><a asp-area="Customer" asp-controller="Message" asp-action="Detail" asp-route-messageId="@m.Id" class="btn @(m.IsRead?"btn-secondary":"btn-primary")">Detay</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        else
+        {
+            <div class="d-flex flex-column">
+                <h3 class="w-100 text-start">Hiç mesajınız bulunmamaktadır. Mesaj göndermek için buraya <a asp-area="Customer" asp-controller="Message" asp-action="SendMessage" class=" btn-link fs-3">tıklayınız...</a></h3>
+                <h3 class="w-100 text-start">Arkadaş eklemek için buraya <a asp-area="Customer" asp-controller="Friendship" asp-action="Index" class=" btn-link fs-3">tıklayınız...</a></h3>
+            </div>
+
+        }
+    </div>
+</div>
+@section Styles{
+    @await Html.PartialAsync("_DataTablesStylesPartial")
+}
+@section Scripts{
+    @await Html.PartialAsync("_SimpleDataTablesScriptPartial")
+    <script>
+        document.querySelectorAll('#myDataTable tbody tr').forEach(function (row) {
+            // Satır içerisindeki select ve button elementlerini dışarıda tut
+            var interactiveElements = row.querySelectorAll('td:not(.exclude-from-click) select, td:not(.exclude-from-click) a');
+            interactiveElements.forEach(function (element) {
+                element.addEventListener('dblclick', function (event) {
+                    event.stopPropagation(); // Satırın tıklanma işlemini durdur
+                });
+            });
+            // Satıra çift tıklanınca proje detay sayfasına yönlendirme işlemi
+            row.addEventListener('dblclick', function (event) {
+                var messageId = this.dataset.messageId; // Satırın veri özniteliğinden proje ID'sini al
+                if (messageId) {
+                    // Proje detay sayfasına yönlendirme işlemi
+                    window.location.href = '/Customer/Message/Detail?messageId=' + messageId;
+                }
+            });
+        });
+    </script>
+}

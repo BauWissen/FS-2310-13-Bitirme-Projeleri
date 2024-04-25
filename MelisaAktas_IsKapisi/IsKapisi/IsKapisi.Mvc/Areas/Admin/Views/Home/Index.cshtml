@@ -1,0 +1,63 @@
+﻿
+@section Styles{
+    @await Html.PartialAsync("_DataTablesCssPartial")
+
+}
+
+
+@section Scripts {
+  @await Html.PartialAsync("_DataTablesJsPartial")
+}
+
+
+
+
+
+ <div class="container">
+     <div class="row">
+         <div class="col-md-6">
+             <h1 class="display-6 text-primary">Ürünler</h1>
+         </div>
+         <div class="col-md-6">
+             <a asp-area="Admin"
+                asp-controller="Home"
+                asp-action="Create"
+                
+                 class="btn btn-success float-end">İş İlanı Ekle</a>
+         </div>
+     </div>
+     <table id="entityTable" class="table">
+         <thead>
+             <tr>
+        
+                 <th>Id</th>
+                 <th>İş İlanı Başığı</th>
+            
+                 <th>#</th>
+             </tr>
+         </thead>
+         <tbody>
+             @foreach (var p in Model)
+             {
+                 <tr>
+                    
+                     <td>@p.Id</td>
+                     <td>@p.Name</td>
+           
+                     <td width="130">
+                         <a asp-area="Admin"
+                            asp-controller="Home"
+                            asp-action="Edit"
+                            asp-route-id="@p.Id"
+                            class="btn btn-warning btn-sm">Düzenle</a>
+                         <a asp-area="Admin"
+                            asp-controller="Home"
+                            asp-action="Delete"
+                            asp-route-id="@p.Id"
+                            class="btn btn-danger btn-sm">Sil</a>
+                     </td>
+                 </tr>
+             }
+         </tbody>
+     </table>
+ </div>

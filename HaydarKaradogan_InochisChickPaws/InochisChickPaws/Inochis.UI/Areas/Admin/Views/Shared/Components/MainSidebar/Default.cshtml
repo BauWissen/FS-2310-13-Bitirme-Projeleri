@@ -1,0 +1,105 @@
+﻿<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-light-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/admin" class="brand-link text-center ">
+        <span class="brand-text font-weight-light text-danger fa-2x">Admin</span>
+    </a>
+
+    <a href="/" target="_blank" class="brand-link text-center">
+        <span class="brand-text font-weight-light">Inochis Chick Paws</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar ">
+        @await Component.InvokeAsync("SidebarUserPanel")
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2 pace-progress-color-red">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                <li class="nav-item">
+                    <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fas fa-house-user"></i>
+                        <p class="text-danger">Siparişler</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Ürünler
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-id="false" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ürün Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yeni Ürün</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Product" asp-action="Index" asp-route-id="true" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Çöp Kutusu</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+          
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-tree"></i>
+                        <p>
+                            Kullanıcılar
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="User" action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Kullanıcı Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="Role" action="Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Rol Listesi</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="Admin" asp-controller="User" action="GetAdminUsers" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Yöneticiler</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a  asp-area="Admin" asp-controller="User" action="GetCustomerUsers" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Müşteriler</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a asp-area="" asp-controller="Message" asp-action="Index" class="nav-link">
+                        <i class="nav-icon fas fa-house-user"></i>
+                        <p>
+                            Mesajlar
+                        </p>
+                    </a>
+                </li>
+             
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Ela Admin - HTML5 Admin Template</title>
+      <meta name="description" content="Ela Admin - HTML5 Admin Template">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    @await Html.PartialAsync("_AdminStylesPartial")
+    @await RenderSectionAsync("Styles",false)
+    
+</head>
+<body>
+@await Component.InvokeAsync("AdminHeader")
+    @await Component.InvokeAsync("AdminSideBar")
+    @RenderBody()
+
+@await Html.PartialAsync("_AdminScriptsPartial")
+@await Component.InvokeAsync("Notyf")
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

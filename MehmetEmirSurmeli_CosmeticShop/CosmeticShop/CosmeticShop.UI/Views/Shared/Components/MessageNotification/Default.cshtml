@@ -1,0 +1,14 @@
+﻿@model int
+
+    <a asp-area=""
+       asp-controller="Message"
+       asp-action="Index">
+        @{
+            bool isShowCount = Model == 0 ? false : true;
+        }
+        <img src="/images/products/icon/heart.png" alt="">
+        @if (isShowCount)
+        {
+            <span class="tip">@Model</span>
+        }
+    </a>

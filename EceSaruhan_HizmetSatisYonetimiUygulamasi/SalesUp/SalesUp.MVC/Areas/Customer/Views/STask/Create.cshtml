@@ -1,0 +1,49 @@
+﻿@model AddSTaskViewModel
+
+<div class="row w-75 float-right container float-end pe-5 me-5 my-5">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="text-success pt-2">Yeni Görev Ekle</h3>
+            </div>
+            <div class="card-body card-block">
+                <form asp-area="Customer"
+                      asp-controller="STask"
+                      asp-action="Create"
+                      method="post" class="form-horizontal">
+
+                    <div class="row form-group mb-3 mt-2">
+                        <div class="col col-md-2 text-success"><label asp-for="Title" class=" form-control-label">Başlık</label></div>
+                        <div class="col-12 col-md-10"><input asp-for="Title" type="text" placeholder="Görev Başlığı Giriniz.." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="CustomerName" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="CustomerName" type="text" placeholder="Müşteri Bilgisi Giriniz..." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="ProductName" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><input asp-for="ProductName" type="text" placeholder="Ürün Bilgisi Giriniz..." class="form-control"></div>
+                    </div>
+
+                    <div class="row form-group mb-3">
+                        <div class="col col-md-2 text-success"><label asp-for="Note" class=" form-control-label"></label></div>
+                        <div class="col-12 col-md-10"><textarea asp-for="Note" rows="9" placeholder="Görev Detayını Giriniz..." class="form-control"></textarea></div>
+                    </div>
+
+                    <a asp-area="Customer"
+                       asp-controller="STask"
+                       asp-action="Index"
+                       class="btn btn-warning text-white">Geri Dön</a>
+                    <button class="btn btn-success float-end" type="submit">Görevlere Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/AdminArea/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+}

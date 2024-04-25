@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Male_Fashion Template">
+    <meta name="keywords" content="Male_Fashion, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cosmetic Shop</title>
+    @await Html.PartialAsync("_StylesPartial")
+    @await RenderSectionAsync("Styles", false)
+</head>
+
+<body>
+    @await Html.PartialAsync("_PagePreloaderPartial")
+    @await Html.PartialAsync("_OffcanvasMenuPartial")
+    @await Html.PartialAsync("_HeaderSectionPartial")
+    @RenderBody()
+    @await Html.PartialAsync("_FooterSectionPartial")
+    @await Html.PartialAsync("_ScriptsPartial")
+    @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", false)
+</body>
+</html>

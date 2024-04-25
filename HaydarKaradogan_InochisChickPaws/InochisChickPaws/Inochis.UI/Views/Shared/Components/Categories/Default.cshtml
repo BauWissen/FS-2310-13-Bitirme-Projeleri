@@ -1,0 +1,27 @@
+﻿@model List<CategoryViewModel>
+
+    <!-- Categories Section Begin -->
+    <section class="categories">
+        <div class="container-fluid">
+            <div class="row">
+             
+                <div class="col-lg-12 ">
+                    <div class="row">
+                      
+                        
+                            <div class="col-lg-  p-0">
+                                <div class="categories__item set-bg" data-setbg=@($"/ui/img/categories/category-{1}.jpg")>
+                                    <div class="categories__text">
+                                        <h4>@Model[0].Name</h4>
+                                        <p>@Model[0].Description</p>
+                                <a href="/Product/Index/1">Alışveriş Yap</a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>

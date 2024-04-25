@@ -1,0 +1,71 @@
+<div class="w-25 float-start"> 
+<!-- AdminCustomerSideBar Panel -->
+<aside id="left-panel" class="left-panel mt-5">
+    <nav class="navbar navbar-expand-sm navbar-default">
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+    
+            <ul class="nav navbar-nav mt-2">
+                <li>
+                    <div class="d-flex align-items-center ms-4 mb-4">
+                        <div>
+                            <a asp-area="Admin"
+                               asp-controller="Account"
+                               asp-action="Profile"
+                               class="btn btn-primary rounded-circle mt-2" alt="" style="width: 40px; height: 40px;"><i class="fa fa-user"></i></a>
+                        </div>
+                        <div class="ml-2 mt-2">
+                            <a asp-area="Admin"
+                               asp-controller="Account"
+                               asp-action="Profile" class="nav-item nav-link text-primary">@User.Identity.Name</a>
+                        </div>
+                    </div>
+                </li>
+               <li class="active my-1">
+                    <a asp-area="Admin"
+                       asp-controller="Home"
+                       asp-action="Index"><i class="menu-icon fa fa-laptop"></i>Anasayfa</a>
+                </li>
+
+                <li class="my-1">
+                    <a asp-area="Admin"
+                       asp-controller="STask"
+                       asp-action="Index"> <i class="menu-icon fa fa-bars"></i>Görev Listesi</a>
+                </li>
+                <li class="my-1">
+                    <a asp-area="Admin"
+                       asp-controller="STask"
+                       asp-action="Create"> <i class="menu-icon fa fa-plus"></i>Yeni Görev</a>
+                </li>
+
+                <li class="my-1">
+                    <a asp-area="Admin"
+                       asp-controller="Message"
+                       asp-action="Index"> <i class="menu-icon ti-email"></i>Mesajlar</a>
+                </li>
+
+                <li class="my-1">
+                    <a asp-area="Admin"
+                       asp-controller="User"
+                       asp-action="Index"> <i class="menu-icon fa fa-id-badge"></i>Kullanıcı Listesi</a>
+                </li>
+                <li class="my-1">
+                    <a asp-area="Admin"
+                       asp-controller="Subscription"
+                       asp-action="Index"> <i class="menu-icon fa fa-table"></i>Abonelik Seçenekleri</a>
+                </li>
+                <li class="my-1">
+                    <a asp-area="Admin"
+                       asp-controller="ContactUs"
+                       asp-action="Index"> <i class="menu-icon fa fa-phone"></i>Bize Ulaşın</a>
+                </li>
+                <li class="my-1">
+                    <a asp-area=""
+                       asp-controller="Home"
+                       asp-action="Index"><i class="menu-icon fa fa-sign-in"></i>Admin Panelden Ayrıl</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside>
+</div>
+    <!-- /#sidebar-panel -->

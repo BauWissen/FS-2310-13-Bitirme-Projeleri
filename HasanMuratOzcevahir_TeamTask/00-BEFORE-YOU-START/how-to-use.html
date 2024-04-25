@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="./img/how-to-useIcon.ico">
+    <title>NASIL KULLANILIR</title>
+</head>
+
+<body class="bg-zinc-600 ">
+    <div class="bg-zinc-700 text-4xl shadow-xl mb-5 font-bold text-orange-400 p-5">
+        <i class="fa-solid fa-book"></i>
+        <span> Nasıl kullanılır?</span>
+    </div>
+    <div class="mx-1 lg:mx-20 bg-zinc-700 p-2 lg:p-10 gap-10 flex flex-col shadow-xl">
+        <div class="bg-zinc-600 flex flex-col gap-5 lg:p-5 rounded-xl  p-2 ">
+            <span class="text-sky-600 text-center lg:text-start text-3xl font-bold">Nedir?</span>
+            <span class="text-4xl text-center text-slate-300">
+                "<span class="text-orange-400 font-semibold">Team Task</span>, ekibinizin verimliliğini artırmak
+                için tasarlanmış kullanıcı dostu bir görev yönetim
+                platformudur.
+            </span>
+        </div>
+        <div class="bg-zinc-600 p-2 lg:p-5 rounded-xl">
+            <div class="flex flex-col gap-5 ">
+                <span class="text-sky-600 text-center lg:text-start text-3xl font-bold">Projeyi test etmek için ne
+                    gerekli?</span>
+                <div class="text-3xl flex flex-col text-slate-300">
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-5">
+                        <span>
+                            Visual Studio
+                        </span>
+                        <a target="_blank" class="text-sky-400 underline text-xl"
+                            href=" https://visualstudio.microsoft.com/tr/"> https://visualstudio.microsoft.com
+                        </a>
+                    </div>
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-5">
+                        <span>
+                            Visual Studio Code
+                        </span>
+                        <a target="_blank" class="text-sky-400 underline text-xl"
+                            href=" https://code.visualstudio.com/"> https://code.visualstudio.com
+                        </a>
+                    </div>
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-5">
+                        <span>
+                            Nodejs
+                        </span>
+                        <a target="_blank" class="text-sky-400 underline text-xl" href="https://nodejs.org/en">
+                            https://nodejs.org
+                        </a>
+                    </div>
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-5">
+                        <span>
+                            SQLite
+                        </span>
+                        <a target="_blank" class="text-sky-400 underline text-xl" href=" https://sqlitebrowser.org/">
+                            https://sqlitebrowser.org/
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Back END SETTINGS START -->
+        <div class="bg-zinc-600 flex flex-col gap-5 lg:p-5 rounded-xl  p-2 ">
+            <span
+                class="text-yellow-400 text-center  text-3xl font-bold lg:p-10 bg-slate-700 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-gear text-6xl text-zinc-900"></i> 01-BACK-END AYARLARI</span>
+
+            <div class="text-2xl text-slate-300 flex flex-col lg:flex-row items-center lg:gap-5">
+                <i class="fa-solid fa-1 text-black"></i>
+                <span class="bg-zinc-800 p-2"> Back End projesini çalışır hale getirmek için Visual Studio'yu indirip
+                    kurmuş olmanız ve .NET 7
+                    bileşenini yüklemiş olmanız gerekli.</span>
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:gap-5">
+                <i class="fa-solid fa-2 text-black"></i>
+                <div class=" bg-zinc-800 p-2">
+                    <span>İndirdiğiniz <span class="text-yellow-400">01-BACK-END</span> klasörün'deki <span
+                            class="text-sky-400">TeamTask.sln</span> dosyasını <span class="text-purple-400">Visual
+                            Studio </span>ile açın.</span>
+                </div>
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start  lg:gap-5">
+                <i class="fa-solid fa-3 text-black"></i>
+                <div class="flex flex-col gap-2">
+                    <div class="bg-zinc-800 p-2">
+                        <span class="">
+                            Server'ı başlatmadan önce çalışır hale getirmek için aşağıda belirtilen dosyadaki
+                            <span class="text-red-600">
+                                "applicationUrl"
+                            </span>
+                            niteliğin değerini kendi yerel<small>(server'ı çalıştırdığınız)</small> bilgisayarınızın
+                            <span class="text-slate-100">IPv4 adresi</span>
+                            ile değiştirmelisiniz.
+                        </span>
+                    </div>
+                    <div class="w-full overflow-hidden">
+                        <img src="./img/launchSettingsJSONPROP.png" class="" />
+                        <small class="text-slate-400 text-sm break-all  flex items-center gap-3 p-2">
+                            <i class="fa-solid fa-folder-open text-yellow-400"></i>
+                            01-BACK-END/TeamTask/TeamTask.API/Properties/launchSettings.json
+
+                        </small>
+                        <small class="font-semibold ">Yeni değer <span
+                                class="text-green-500">http://XXX.XXX.X.XXX:7059</span> şeklinde olmalı</small>
+                        <br />
+                        <small class="text-sm text-rose-300"><i class="fa-solid fa-warning text-yellow-400 text-lg"></i>
+                            O anki portta '7059' başka bir uygulama çalışıyorsa uygulamalar çakışabilir. Bu sebeple port
+                            numaralarını değiştirmeniz gerekebilir.</small>
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start lg:gap-5">
+                <i class="fa-solid fa-4 text-black"></i>
+                <div class="flex flex-col gap-2">
+                    <div class="bg-zinc-800 p-2 ">
+                        <span>
+                            Front end'den gelen istekleri karşılayabilmesi için
+                            <span class="text-rose-400">
+                                Cors Policy
+                                <small>(Kökler Arası Kaynak Paylaşımı)
+
+                                </small>
+                            </span>
+                            ayarlarını aşağıdaki resimde görüldüğü şekilde yapmalısınız. Buradaki <span
+                                class="text-blue-400">"WithOrigins"</span> sizin Front-end projeniz hangi adreste ve
+                            portta sunumdaysa(çalışıyorsa) onu yazmalısınız ki back-end oradan gelen istekleri kabul
+                            edebilsin.
+                        </span>
+                    </div>
+                    <div class="overflow-hidden">
+                        <img src="./img/applicationBuilderExtensionCorsPolicy.png" class="" />
+                        <small class="flex text-slate-400 text-sm">
+                            <span class="break-all flex items-center gap-3 p-2">
+                                <i class="fa-solid fa-folder-open text-yellow-400"></i>
+                                01-BACK-END/TeamTask/TeamTask.API/Extensions/ApplicationBuilderExtension.cs
+                            </span>
+
+                        </small>
+                        <small class="font-semibold">Yeni değer <span class="text-green-500"> http://XXX.XXX.X.XXX:3000
+                            </span> şeklinde olmalı</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start lg:gap-5">
+                <i class="fa-solid fa-5 text-black"></i>
+                <div class="flex flex-col gap-2">
+                    <div class="bg-zinc-800 p-2 ">
+                        <span>
+                            Projede SQLite veritabanı bulunduğu için ayrıca veritabanı oluşturmanıza gerek yoktur. Eğer
+                            ki veritabanı bulunmuyorsa inceleyip <a target="_blank" class="text-sky-400 underline"
+                                href="https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli">"How
+                                to migrate"</a> migration işlemlerini kolayca yapabilirsiniz.
+                        </span>
+
+                    </div>
+                    <div class="flex flex-col">
+                        <span class=" bg-zinc-700 p-2"> Package Manager aracılığı ile</span>
+                        <small class="indent-7 w-full">add-migration MyFirstDB</small>
+                        <small class="indent-7 w-full ">update-database</small>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class=" bg-zinc-700 p-2">.NET core CLI aracılığı ile</span>
+                        <small class="indent-7 w-full">dotnet ef migrations add MyFirstDB</small>
+                        <small class="indent-7 w-full ">dotnet ef database update</small>
+                    </div>
+                </div>
+
+            </div>
+            <span class="text-yellow-400 text-center  text-3xl font-bold lg:p-10 bg-slate-700">01-BACK-END AYARLARI
+                BİTMİŞTİR</span>
+
+        </div>
+        <!-- BACK END SETTINGS END -->
+
+        <div class="bg-zinc-600 flex flex-col gap-5 lg:p-5 rounded-xl  p-2 ">
+            <span
+                class="text-yellow-400 text-center  text-3xl font-bold lg:p-10 bg-slate-700 flex items-center justify-center gap-2">
+                <i class="fa-solid fa-gear text-6xl text-zinc-900"></i> 02-FRONT-END AYARLARI</span>
+
+            <span class="text-yellow-400 text-center  text-3xl font-bold"></span>
+            <div class="text-2xl text-slate-300 flex flex-col lg:flex-row  lg:gap-5">
+                <i class="fa-solid fa-1 text-black"></i>
+                <span class="bg-zinc-800 p-2"> Front End projesini çalışır hale getirmek için Visual Studio Code'u ve <a
+                        target="_blank" class="text-blue-400" href="https://nodejs.org/en">nodejs</a>'i indirip kurmuş
+                    olmanız olmanız
+                    gerekli.</span>
+                <span></span>
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:gap-5">
+                <i class="fa-solid fa-2 text-black"></i>
+                <div class=" bg-zinc-800 p-2">
+                    <span>İndirdiğiniz <span class="text-yellow-400">02-FRONT-END</span> klasörünü <span
+                            class="text-sky-500">Visual
+                            Studio Code</span> ile açın.</span>
+                </div>
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start  lg:gap-5">
+                <i class="fa-solid fa-3 text-black"></i>
+                <div class="flex flex-col gap-2">
+                    <div class="bg-zinc-800 p-2">
+                        <span class="">
+                            Visual Studio Code'da ilgili klasördeyken terminal açın. Terminale <span
+                                class="text-orange-400 bg-zinc-950 p-1 rounded-md">npm <span
+                                    class="text-slate-400">install</span></span> yazıp Enter'a basın. Bu komutla,
+                            Front-end projesi ihtiyaç duyduğu paketleri<small>(bağımlılıkları)</small> indirecektir.
+                            İşlem tamamlanana kadar bekleyin.
+                        </span>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start lg:gap-5">
+                <i class="fa-solid fa-4 text-black"></i>
+                <div class=" flex flex-col gap-2">
+                    <div class="bg-zinc-800 p-2 ">
+                        <span>Front-end projesini çalıştırmadan önce ".env" dosyasındaki <span
+                                class="text-fuchsia-500">HOST</span> değerini kendi sunucunuzun(bilgisayarınız) IPv4
+                            adresi ile değiştirmelisiniz. <br /><small>not: Back-end'i ayarlarken değiştirdiğimiz <span
+                                    class="text-blue-400"> "WithOrigins"</span> değeri ile aynı olmalı.
+                                <br />
+                                <small class="text-rose-300"><i class="fa-solid fa-warning text-yellow-400 text-lg"></i>
+                                    01-BACK-END 4. adıma bakabilirsiniz</small>
+                            </small>
+                        </span>
+                    </div>
+                    <div class="overflow-hidden">
+                        <img src="./img/FrontEnd_env.png" class="lg:w-1/2" />
+                        <small class="flex text-slate-400 text-sm">
+                            <span class="break-all flex items-center gap-3 p-2">
+                                <i class="fa-solid fa-folder-open text-yellow-400"></i>
+                                02-FRONT-END/TeamTask/.env
+                            </span>
+
+                        </small>
+                        <small class="font-semibold">Yeni değer <span class="text-green-500">HOST=XXX.XXX.X.XXX</span>
+                            şeklinde olmalı</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start lg:gap-5">
+                <i class="fa-solid fa-5 text-black"></i>
+                <div class="flex flex-col gap-2">
+                    <div class="bg-zinc-800 p-2 ">
+                        <span>Front-end'den back-end'e yapılan isteklerin adresini Back-End'in kendi bilgisayarınızda
+                            sunuma açıldığı adres ile değiştirmelisiniz. Bunun için şu yolu takip ederek
+                            <div class="my-2 break-all tracking-widest font-thin">
+                                <i class="fa-solid fa-folder-tree text-yellow-400"></i>
+                                <span> src / user / connection / <span
+                                        class="text-yellow-300">Connection.js</span></span>
+                            </div>
+                            <div class="flex flex-col text-lg">
+                                <span>const ip = "Back end sunucunuzun çalıştığı IPv4 adresi"</span>
+                                <span>const port = "Back end sunucunuzun çalıştığı port"</span>
+                            </div>
+                            <div class="my-2 break-all tracking-widest font-thin">
+                                <i class="fa-solid fa-folder-tree text-yellow-400"></i>
+                                <span> src / admin / connections / <span
+                                        class="text-yellow-300">adminConnection.js</span></span>
+                            </div>
+                            <div class="flex flex-col text-lg">
+                                <span>const ip = "Back end sunucunuzun çalıştığı IPv4 adresi"</span>
+                                <span>const port = "Back end sunucunuzun çalıştığı port"</span>
+                            </div>
+                        </span>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="text-2xl text-slate-300 flex  flex-col lg:flex-row items-center lg:items-start lg:gap-5">
+                <i class="fa-solid fa-6 text-black"></i>
+                <div class="flex flex-col gap-2 bg-zinc-800 p-2">
+                    <div>
+                        <span>Son olarak, ilgili klasörde(TeamTask) terminal ekranına </span>
+                        <span class="text-orange-400 bg-zinc-950 p-1 rounded-md">npm <span class="text-slate-400">start
+                            </span>
+                        </span>
+                        yazıp front'end projesini çalıştırabilirsiniz.
+                    </div>
+                </div>
+
+            </div>
+
+
+            <span class="text-yellow-400 text-center  text-3xl font-bold lg:p-10 bg-slate-700">02-FRONT-END AYARLARI
+                BİTMİŞTİR</span>
+
+        </div>
+        <div class="flex items-center justify-center text-4xl mb-10 text-blue-400 underline"><a target="_blank" href="https://www.ozcevahir.com">ozcevahir.com</a></div>
+    </div>
+</body>
+
+</html>

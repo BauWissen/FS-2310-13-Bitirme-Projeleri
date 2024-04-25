@@ -1,0 +1,74 @@
+@model List<SubscriptionViewModel>
+
+<div class="content w-75 float-right container pr-5">
+            <div class="animated fadeIn">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="card">
+                            
+                            <div class="card-header d-flex justify-content-between align-items-center">
+                                <h1 class="card-title text-primary">Abonelik Listesi</h1>
+                                <div>
+                                     <a asp-area="Admin"
+                                                                       asp-controller="Subscription"
+                                                                       asp-action="Create"
+                                                                       class="btn btn-success btn-sm">Yeni Abonelik</a>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Abonelik</th>
+                                        <th>Birim Fiyatı</th>
+                                        <th>Süre</th>
+                                        <th>Toplam Fiyat</th>
+                                        <th class="text-center">#</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach (var s in Model)
+                                    {
+                                        <tr>
+                                            <td>@s.Id</td>
+                                            <td>@s.Name</td>
+                                            <th>@s.Price</th>
+                                            <th>@($"{s.Duration}/{s.DurationUnit}")</th>
+                                            <th>@($"{s.TotalPrice:C0}")</th>
+                                            <th>
+                                                <a
+                                                    asp-area="Admin"
+                                                    asp-controller="Subscription"
+                                                    asp-action="Edit"
+                                                    asp-route-id="@s.Id"
+                                                    class="fa fa-edit btn btn-warning text-white mx-3">Düzenle</a>
+                                                <a
+                                                    asp-area="Admin"
+                                                    asp-controller="Subscription"
+                                                    asp-action="HardDelete"
+                                                    asp-route-id="@s.Id"
+                                                    class="fa fa-trash btn btn-danger">Sil</a>
+                                            </th>
+
+                                        </tr>
+                                    }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- .animated -->
+        </div><!-- .content -->
+
+@section Styles
+{
+    @await Html.PartialAsync("_DataTablesStylePartial")
+}
+
+@section Scripts
+{
+    @await Html.PartialAsync("_DataTablesScriptsPartial")
+}
